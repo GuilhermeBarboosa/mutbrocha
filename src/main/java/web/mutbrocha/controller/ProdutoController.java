@@ -65,7 +65,6 @@ public class ProdutoController {
 	public String abrirPesquisa(Model model) {
 		List<Categorias> categorias = categoriaRepository.findByStatus(Status.ATIVO);
 		model.addAttribute("categorias", categorias);
-
 		return "produtos/pesquisar";
 	}
 	
@@ -84,6 +83,7 @@ public class ProdutoController {
 	
 	@PostMapping("/abriralterar")
 	public String abrirAlterar(Produtos produtos, Model model) {
+		logger.error(produtos.toString());
 		List<Categorias> listCategorias = categoriaRepository.findByStatus(Status.ATIVO);
 		model.addAttribute("categorias", listCategorias);
 		return "produtos/alterar";
@@ -103,6 +103,7 @@ public class ProdutoController {
 	
 	@PostMapping("/abrirremover")
 	public String abrirRemover(Produtos produtos) {
+		logger.error(produtos.toString());
 		return "produtos/remover";
 	}
 	

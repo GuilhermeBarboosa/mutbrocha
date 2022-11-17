@@ -8,6 +8,7 @@ public class ProdutoFilter {
 	private String produto;
 	private String situacao;
 	private Long categoria;
+	
 	public Long getId() {
 		return id;
 	}
@@ -32,12 +33,13 @@ public class ProdutoFilter {
 	public void setCategoria(Long categoria) {
 		this.categoria = categoria;
 	}
+	
 	@Override
 	public String toString() {
 		return "ProdutoFilter [id=" + id + ", produto=" + produto + ", situacao=" + situacao + ", categoria="
 				+ categoria + "]";
 	}
-	
+
 
 
 

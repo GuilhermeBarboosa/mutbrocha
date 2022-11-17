@@ -13,7 +13,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -35,9 +37,9 @@ public class Produtos implements Serializable {
 	
 	private String img;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categoria")
-	private Categorias categorias;
+	private Categorias categoria;
 	
 	@Enumerated(EnumType.STRING)
 	private Situacoes situacao = Situacoes.DISPONIVEL;
@@ -69,12 +71,12 @@ public class Produtos implements Serializable {
 		this.img = img;
 	}
 
-	public Categorias getCategorias() {
-		return categorias;
+	public Categorias getCategoria() {
+		return categoria;
 	}
 
-	public void setCategorias(Categorias categorias) {
-		this.categorias = categorias;
+	public void setCategoria(Categorias categoria) {
+		this.categoria = categoria;
 	}
 
 	public Status getStatus() {
@@ -85,9 +87,17 @@ public class Produtos implements Serializable {
 		this.status = status;
 	}
 
+	public Situacoes getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(Situacoes situacao) {
+		this.situacao = situacao;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(categorias, id, img, produto, status);
+		return Objects.hash(categoria, id, img, produto, situacao, status);
 	}
 
 	@Override
@@ -99,14 +109,16 @@ public class Produtos implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Produtos other = (Produtos) obj;
-		return Objects.equals(categorias, other.categorias) && Objects.equals(id, other.id)
-				&& Objects.equals(img, other.img) && Objects.equals(produto, other.produto) && status == other.status;
+		return Objects.equals(categoria, other.categoria) && Objects.equals(id, other.id)
+				&& Objects.equals(img, other.img) && Objects.equals(produto, other.produto)
+				&& situacao == other.situacao && status == other.status;
 	}
 
 	@Override
 	public String toString() {
-		return "Produtos [id=" + id + ", produto=" + produto + ", img=" + img + ", categorias=" + categorias
-				+ ", status=" + status + "]";
+		return "Produtos [id=" + id + ", produto=" + produto + ", img=" + img + ", categoria=" + categoria
+				+ ", situacao=" + situacao + ", status=" + status + "]";
 	}
 
+	
 }

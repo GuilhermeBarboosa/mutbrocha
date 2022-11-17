@@ -16,7 +16,7 @@
 					<tr>
 						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'id', 'Id', '')}"></div>
 						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'produto', 'Produto', '')}"></div>
-						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'img', 'IMG', '')}"></div>
+						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'img', 'Imagem', '')}"></div>
 						<th scope="col">Categoria</th>
 						<th scope="col">Situação</th>
 						<th scope="col">Alterar</th>
@@ -27,16 +27,17 @@
 					<tr th:each="p : ${pagina.conteudo}">
 						<td th:text="${p.id}"></td>
 						<td th:text="${p.produto}"></td>
-						<!-- <td th:text="${p.img}"></td> -->
-						<img th:src="${p.img}">
-						<img th:src="${p.categorias.categoria}">
-						<img th:src="${p.situacao}">
+						<td><img width="5%" th:src="${p.img}"></td>
+						<td th:text="${p.categoria.categoria}"></td>
+						<td th:text="${p.situacao}"></td>
+						
 						<td>
 							<form th:action="@{/produtos/abriralterar}" method="post">
 								<input type="hidden" name="id" th:value="${p.id}">
 								<input type="hidden" name="produto" th:value="${p.produto}">
 								<input type="hidden" name="img" th:value="${p.img}">
-								<input type="hidden" name="categorias.categoria" th:value="${p.categorias.categoria}">
+								<input type="hidden" name="categoria.id" th:value="${p.categoria.id}">
+								<input type="hidden" name="categoria.categoria" th:value="${p.categoria.categoria}">
 								<input type="hidden" name="situacao" th:value="${p.situacao}">
 								<button type="submit" title="Editar" class="btn btn-secondary">
 									<i class="bi bi-pencil-fill"></i>
@@ -48,7 +49,8 @@
 								<input type="hidden" name="id" th:value="${p.id}">
 								<input type="hidden" name="produto" th:value="${p.produto}">
 								<input type="hidden" name="img" th:value="${p.img}">
-								<input type="hidden" name="categorias.categoria" th:value="${p.categorias.categoria}">
+								<input type="hidden" name="categoria.id" th:value="${p.categoria.id}">
+								<input type="hidden" name="categoria.categoria" th:value="${p.categoria.categoria}">
 								<input type="hidden" name="situacao" th:value="${p.situacao}">
 								<button type="submit" title="Remover" class="btn btn-danger">
 									<i class="bi bi-trash-fill"> </i>

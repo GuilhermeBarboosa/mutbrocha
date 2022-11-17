@@ -24,8 +24,8 @@
 					                placeholder="Digite o url da imagem">
 				</div>
 				<div class="mb-3">
-					<label for="categorias" class="form-label">Categorias</label>
-					<select class="form-select" th:field="*{categorias}">
+					<label for="categoria" class="form-label">Categorias</label>
+					<select class="form-select" th:field="*{categoria}">
 						<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.categoria}"></option>
 					</select>
 				</div>

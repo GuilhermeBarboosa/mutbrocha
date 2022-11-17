@@ -30,14 +30,9 @@
 							placeholder="Digite o produto da pessoa">
 					</div>
 					<div class="mb-3">
-						<label for="img" class="form-label">Imagem</label> <input
-							type="text" class="form-control" name="img" id="img"
-							placeholder="Digite o CPF da pessoa">
-					</div>
-					
-					<div class="mb-3">
-					<label for="categorias" class="form-label">Categorias</label>
+					<label for="categoria" class="form-label">Categorias</label>
 					<select class="form-select" name="categoria">
+						<option value="" selected="selected">Não selecionada</option>
 						<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.categoria}"></option>
 					</select>
 				</div>
@@ -45,6 +40,7 @@
 					<div class="mb-3">
 						<label for="categorias" class="form-label">Situações</label> <select
 							class="form-select" name="situacao">
+									<option value="" selected="selected">Não selecionada</option>
 							<option
 								th:each="situacoes : ${T(web.mutbrocha.model.Situacoes).values()}"
 								th:value="${situacoes}" th:text="${situacoes}"></option>
