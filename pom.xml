@@ -108,6 +108,11 @@
 		</dependency>
 
 
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 		<!-- Adiciona a dependência do Flyway -->
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.flywaydb</groupId> -->
