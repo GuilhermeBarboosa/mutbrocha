@@ -26,9 +26,11 @@ C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbr
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\controller\ProdutoController.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\formatter\LocalTimeFormatter.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\validation\validator\WellFormedEmailValidator.java
+C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\controller\LoginController.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\validation\validator\NotNullIfAnotherFieldHasValueValidator.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\model\filter\CategoriaFilter.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\service\ProdutoService.java
+C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\WebSecurityConfig.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\formatter\LocalDateFormatter.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\model\Status.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\repository\helper\categoria\CategoriaQueriesImpl.java

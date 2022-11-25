@@ -30,6 +30,7 @@ web\mutbrocha\ajax\NotificacaoAlertify.class
 web\mutbrocha\service\CategoriaService.class
 web\mutbrocha\formatter\LocalTimeFormatter.class
 web\mutbrocha\validation\validator\IntegerAttributesRelationValidator$1.class
+web\mutbrocha\WebSecurityConfig.class
 web\mutbrocha\ajax\TipoResposta.class
 web\mutbrocha\formatter\NumberFormatter.class
 web\mutbrocha\validation\UniqueValueAttribute.class
@@ -40,6 +41,7 @@ web\mutbrocha\model\filter\CategoriaFilter.class
 web\mutbrocha\validation\validator\DoubleAttributesRelationValidator.class
 web\mutbrocha\controller\advice\GlobalExceptionHandler.class
 web\mutbrocha\repository\helper\produto\ProdutoQueries.class
+web\mutbrocha\controller\LoginController.class
 web\mutbrocha\validation\ValidUsername.class
 web\mutbrocha\ajax\TipoNotificaoAlertify.class
 web\mutbrocha\validation\BigIntegerAttributesRelation$List.class
