@@ -17,7 +17,7 @@ public class User {
 	@Id
 	private String username;
 	private String password;
-	private String name;
+	private String nome;
 	private Boolean enabled;
 	public String getUsername() {
 		return username;
@@ -31,12 +31,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public Boolean getEnabled() {
 		return enabled;
@@ -46,7 +45,7 @@ public class User {
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(enabled, name, password, username);
+		return Objects.hash(enabled, nome, password, username);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -57,12 +56,12 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(enabled, other.enabled) && Objects.equals(name, other.name)
+		return Objects.equals(enabled, other.enabled) && Objects.equals(nome, other.nome)
 				&& Objects.equals(password, other.password) && Objects.equals(username, other.username);
 	}
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", nome=" + name + ", enabled=" + enabled
+		return "User [username=" + username + ", password=" + password + ", nome=" + nome + ", enabled=" + enabled
 				+ "]";
 	}
 	

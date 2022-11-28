@@ -11,6 +11,6 @@ import web.mutbrocha.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, String>{
 	
-	List<User> findByname(String username);
+	User findByusername(String username);
 
 }
