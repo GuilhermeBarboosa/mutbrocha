@@ -17,20 +17,21 @@
         <!-- parte da direita -->
         <div class="d-flex justify-content-end align-items-center">
           <!-- botao login -->
-<!--          <form action="#" method="post">-->
-<!--            <input sec:authorize="!isAuthenticated()" href="/login" type="submit" class="form-control btn btn-primary" value="Login" />-->
-<!--          </form>-->
+<!--          <form action="#" method="post">
+-->
+<!--            <input sec:authorize="!isAuthenticated()" href="/login" type="submit" class="form-control btn btn-primary" value="Login" />
+-->
+<!--          </form>
+-->
 
           <!-- nome usuario -->
-          <div class="ms-3 d-none d-sm-block">
-            <a class="navbar-brand" href="#">
-              <span class="navbar-text text-white"> <span sec:authentication="name"></span> <i class="bi bi-person-fill ms-2"></i> </span>
-            </a>
+          <div class="mx-3 d-none d-sm-block">
+              <span class="fs-4 text-white"> <span sec:authentication="name"></span> <i class="bi bi-person-fill ms-2"></i> </span>
           </div>
 
           <!-- botao logout -->
           <form th:action="@{/logout}" onclick="document.querySelector('#form-login').submit()" sec:authorize="isAuthenticated()" method="post">
-            <input type="submit" class="form-control btn btn-primary" value="Logout" />
+            <input type="submit" class="form-control btn btn-warning" value="Logout" />
           </form>
         </div>
       </div>
