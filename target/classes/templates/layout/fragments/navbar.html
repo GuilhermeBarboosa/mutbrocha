@@ -24,7 +24,7 @@
           <!-- nome usuario -->
           <div class="ms-3 d-none d-sm-block">
             <a class="navbar-brand" href="#">
-              <span class="navbar-text text-white"> <span th:text="${user.nome}"></span> <i class="bi bi-person-fill ms-2"></i> </span>
+              <span class="navbar-text text-white"> <span sec:authentication="name"></span> <i class="bi bi-person-fill ms-2"></i> </span>
             </a>
           </div>
 
