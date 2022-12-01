@@ -51,6 +51,8 @@ public class UserController {
 	@Autowired 
 	private UserService userService;
 	
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	@GetMapping("/cadastrar")
 	public String abrirCadastro(User user, Model model) {
 		return "usuarios/cadastrar";
@@ -58,7 +60,6 @@ public class UserController {
 	
 	@PostMapping("/cadastrar")
 	public String cadastrar(User user) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 		user.setEnabled(true);
 		user.setPassword(encoder.encode(user.getPassword()));
@@ -95,43 +96,48 @@ public class UserController {
 		return "usuarios/mostrartodas";
 	}
 
-//	@PostMapping("/abriralterar")
-//	public String abrirAlterar(Produtos produtos, Model model) {
-//		logger.error(produtos.toString());
-//		List<Categorias> listCategorias = categoriaRepository.findByStatus(Status.ATIVO);
-//		model.addAttribute("categorias", listCategorias);
-//		return "produtos/alterar";
-//	}
-//	
-//	@PostMapping("/alterar")
-//	public String alterar(Produtos produtos) {
-//		produtoService.alterar(produtos);
-//		return "redirect:/produtos/alterar/sucesso";
-//	}
-//	
-//	@GetMapping("/alterar/sucesso")
-//	public String mostrarMensagemAlterarSucesso(Model model) {
-//		model.addAttribute("mensagem", "Alteração na produtos efetuada com sucesso.");
-//		return "mostrarmensagem";
-//	}
-//	
-//	@PostMapping("/abrirremover")
-//	public String abrirRemover(Produtos produtos) {
-//		logger.error(produtos.toString());
-//		return "produtos/remover";
-//	}
-//	
-//	@PostMapping("/remover")
-//	public String remover(Produtos produtos) {
-//		produtos.setStatus(Status.INATIVO);
-//		produtoService.alterar(produtos);
-//		return "redirect:/produtos/remover/sucesso";
-//	}
-//	
-//	@GetMapping("/remover/sucesso")
-//	public String mostrarMensagemRemoverSucesso(Model model) {
-//		model.addAttribute("mensagem", "Remoção (INATIVO) de produtos efetuada com sucesso.");
-//		return "mostrarmensagem";
-//	}
+	@PostMapping("/abriralterar")
+	public String abrirAlterar(User user, Model model) {
+		return "usuarios/alterar";
+	}
+	
+	@PostMapping("/alterar")
+	public String alterar(User user) {
+		
+		user.setEnabled(true);
+		user.setPassword(encoder.encode(user.getPassword()));
+		userService.alterar(user);
+		
+		Authorities authorities = new Authorities();
+		authorities.setUsername(user.getUsername());
+		authorities.setAuthority(user.getRoles().toString());
+		authoritiesRepository.save(authorities);
+		
+		return "redirect:/usuario/alterar/sucesso";
+	}
+	
+	@GetMapping("/alterar/sucesso")
+	public String mostrarMensagemAlterarSucesso(Model model) {
+		model.addAttribute("mensagem", "Alteração na usuários efetuada com sucesso.");
+		return "mostrarmensagem";
+	}
+	
+	@PostMapping("/abrirremover")
+	public String abrirRemover(User user) {
+		return "usuarios/remover";
+	}
+	
+	@PostMapping("/remover")
+	public String remover(User user) {
+		user.setStatus(Status.INATIVO);
+		userService.alterar(user);
+		return "redirect:/usuario/remover/sucesso";
+	}
+	
+	@GetMapping("/remover/sucesso")
+	public String mostrarMensagemRemoverSucesso(Model model) {
+		model.addAttribute("mensagem", "Remoção (INATIVO) de usuário efetuada com sucesso.");
+		return "mostrarmensagem";
+	}
 	
 }

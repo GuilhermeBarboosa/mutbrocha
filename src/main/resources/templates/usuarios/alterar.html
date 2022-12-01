@@ -12,26 +12,28 @@
 		<!-- conteudo principal -->
 		<main class="mt-5 p-4 pt-5">
 			<h2>Alterar</h2>
-			<form th:action="@{/produtos/alterar}" method="post" th:object="${produtos}">
+			<form th:action="@{/usuario/alterar}" method="post" th:object="${user}">
 				<div class="mb-3">
 					<label for="id" class="form-label">Código: <span th:text="*{id}"></span></label>
 				</div>
-				<div class="mb-3">
-					<label for="img" class="form-label">Imagem: <img width="20%" th:src="*{img}"></label>
-				</div>
 				<input type="hidden" name="id" th:value="*{id}">
 				<div class="mb-3">
-					<label for="produto" class="form-label">Produto</label>
-					<input type="text" class="form-control" th:field="*{produto}">
+					<label for="nome" class="form-label">Nome</label>
+					<input type="text" class="form-control" th:field="*{nome}">
 				</div>
 				<div class="mb-3">
-					<label for="img" class="form-label">Imagem</label>
-					<input type="text" class="form-control" th:field="*{img}">
+					<label for="username" class="form-label">Username</label>
+					<input type="text" class="form-control" th:field="*{username}">
 				</div>
 				<div class="mb-3">
-					<label for="categoria" class="form-label">Categorias</label>
-					<select class="form-select" th:field="*{categoria}">
-						<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.categoria}"></option>
+					<label for="password" class="form-label">Password</label>
+					<input type="text" class="form-control" th:field="*{password}">
+				</div>
+				<div class="mb-3">
+					<label for="categoria" class="form-label">Tipo de usuário</label>
+					<select name="roles"  class="form-select">
+						<option th:each="roles : ${T(web.mutbrocha.model.Roles).values()}"
+							th:value="${roles}" th:text="${roles.descricao}"></option>
 					</select>
 				</div>
 				<button type="submit" class="btn btn-primary">Alterar</button>

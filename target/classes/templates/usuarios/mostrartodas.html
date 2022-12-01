@@ -17,6 +17,7 @@
 						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'id', 'Id', '')}"></div>
 						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'username', 'Username', '')}"></div>
 						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'nome', 'Nome', '')}"></div>
+						<th scope="col">Senha</th>
 						<th scope="col">Tipo de usuário</th>
 						<th scope="col">Alterar</th>
 						<th scope="col">Remover</th>
@@ -26,6 +27,7 @@
 					<tr th:each="p : ${pagina.conteudo}">
 						<td th:text="${p.id}"></td>
 						<td th:text="${p.username}"></td>
+						<td th:text="${p.password}"></td>
 						<td th:text="${p.nome}"></td>
 						<td th:text="${p.roles.descricao}"></td>
 		
@@ -33,6 +35,7 @@
 							<form th:action="@{/usuario/abriralterar}" method="post">
 								<input type="hidden" name="id" th:value="${p.id}">
 								<input type="hidden" name="username" th:value="${p.username}">
+								<input type="hidden" name="password" th:value="${p.password}">
 								<input type="hidden" name="nome" th:value="${p.nome}">
 								<input type="hidden" name="p.roles" th:value="${p.roles.descricao}">
 								<button type="submit" title="Editar" class="btn btn-secondary">
@@ -44,6 +47,7 @@
 							<form th:action="@{/usuario/abrirremover}" method="post">
 								<input type="hidden" name="id" th:value="${p.id}">
 								<input type="hidden" name="username" th:value="${p.username}">
+								<input type="hidden" name="password" th:value="${p.password}">
 								<input type="hidden" name="nome" th:value="${p.nome}">
 								<input type="hidden" name="p.roles" th:value="${p.roles.descricao}">
 								<button type="submit" title="Remover" class="btn btn-danger">
