@@ -21,11 +21,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/index/**").permitAll()
-				.antMatchers("/css/**", "/js/**", "/images/**").permitAll().anyRequest()
-				.authenticated().and()
-				.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/", true).permitAll())
-				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login")).csrf().disable();
+//		http.authorizeRequests().antMatchers("/index/**").permitAll()
+//				.antMatchers("/css/**", "/js/**", "/images/**").permitAll().anyRequest()
+//				.authenticated().and()
+//				.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/", true).permitAll())
+//				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login")).csrf().disable();
 	}
 
 	@Override
