@@ -19,6 +19,7 @@ import web.mutbrocha.pagination.PageWrapper;
 import web.mutbrocha.repository.ProdutoRepository;
 import web.mutbrocha.repository.ReservaRepository;
 import web.mutbrocha.repository.UserRepository;
+import web.mutbrocha.service.ProdutoService;
 import web.mutbrocha.service.ReservaProdutoService;
 import web.mutbrocha.service.ReservaService;
 
@@ -48,6 +49,9 @@ public class ReservaController {
 
     @Autowired
     private ReservaService reservaService;
+
+    @Autowired
+    private ProdutoService produtoService;
 
     private Reservas buscarReservaNaSessao(HttpSession sessao) {
         Reservas reserva = (Reservas) sessao.getAttribute("reserva");
@@ -92,7 +96,8 @@ public class ReservaController {
     public String mostrarMensagemCadastroSucesso(Model model, Produtos produtos, HttpSession sessao) {
         Reservas reservasSessao = (Reservas) sessao.getAttribute("reserva");
 
-        List<Produtos> produtosList = produtoRepository.findByStatus(Status.ATIVO);
+
+        List<Produtos> produtosList = produtoRepository.findByStatusAndSituacoes(Status.ATIVO, Situacoes.DISPONIVEL);
 
         model.addAttribute("listProdutos", produtosList);
         model.addAttribute("mensagem", "Cadastro de reserva de " + reservasSessao.getUser().getNome() + " efetuado com sucesso.");
@@ -102,15 +107,24 @@ public class ReservaController {
     @PostMapping("/criarreservadoproduto")
     public String escolherProduto(Produtos produtos, HttpSession sessao, Model model) {
 
-        ReservaProduto reservaProduto =  new ReservaProduto();
-        reservaProduto.setProduto(produtos);
-        reservaProduto.setReserva((Reservas) sessao.getAttribute("reserva"));
+        if(produtos.getSituacao() != Situacoes.RESERVADO){
+            ReservaProduto reservaProduto =  new ReservaProduto();
+            reservaProduto.setProduto(produtos);
+            reservaProduto.setReserva((Reservas) sessao.getAttribute("reserva"));
 
-        reservaProdutoService.salvar(reservaProduto);
+            produtos.setSituacao(Situacoes.RESERVADO);
+            produtoService.alterar(produtos);
 
-        String mensagem = "O " + reservaProduto.getReserva().getUser().getNome() + " reservou o produto " + reservaProduto.getProduto().getProduto();
-        model.addAttribute("mensagem", mensagem);
-        return "mostrarmensagem";
+            reservaProdutoService.salvar(reservaProduto);
+
+            String mensagem = "O " + reservaProduto.getReserva().getUser().getNome() + " reservou o produto " + reservaProduto.getProduto().getProduto();
+            model.addAttribute("mensagem", mensagem);
+            return "mostrarmensagem";
+        }else{
+            String mensagem = "O produto " + produtos.getProduto() +" já está reservado";
+            model.addAttribute("mensagem", mensagem);
+            return "mostrarmensagem";
+        }
     }
 
     @GetMapping("/abrirpesquisar")
