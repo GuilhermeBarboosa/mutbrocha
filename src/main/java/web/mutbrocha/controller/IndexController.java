@@ -17,9 +17,7 @@ public class IndexController {
 	private UserRepository userRepository;
 
 	@GetMapping(value = {"/", "/index.html"} )
-	public String index(Principal principal, Model model) {
-		User user = userRepository.findByusername(principal.getName());
-		model.addAttribute("user", user);
+	public String index(Model model) {
 		return "index";
 	}
 	

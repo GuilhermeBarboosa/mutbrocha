@@ -15,8 +15,8 @@
 				<thead>
 					<tr>
 						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'id', 'Id', '')}"></div>
-						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'username', 'Username', '')}"></div>
 						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'nome', 'Nome', '')}"></div>
+						<th scope="col">Username</th>
 						<th scope="col">Senha</th>
 						<th scope="col">Tipo de usuário</th>
 						<th scope="col">Alterar</th>
@@ -26,9 +26,9 @@
 				<tbody>
 					<tr th:each="p : ${pagina.conteudo}">
 						<td th:text="${p.id}"></td>
+						<td th:text="${p.nome}"></td>
 						<td th:text="${p.username}"></td>
 						<td th:text="${p.password}"></td>
-						<td th:text="${p.nome}"></td>
 						<td th:text="${p.roles.descricao}"></td>
 		
 						<td>

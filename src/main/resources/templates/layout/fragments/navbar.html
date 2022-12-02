@@ -25,9 +25,9 @@
 -->
 
           <!-- nome usuario -->
-          <div class="mx-3 d-none d-sm-block">
-              <span class="fs-4 text-white"> <span sec:authentication="name"></span> <i class="bi bi-person-fill ms-2"></i> </span>
-          </div>
+<!--           <div class="mx-3 d-none d-sm-block"> -->
+<!--               <span class="fs-4 text-white"> <span sec:authentication="name"></span> <i class="bi bi-person-fill ms-2"></i> </span> -->
+<!--           </div> -->
 
           <!-- botao logout -->
           <form th:action="@{/logout}" onclick="document.querySelector('#form-login').submit()" sec:authorize="isAuthenticated()" method="post">

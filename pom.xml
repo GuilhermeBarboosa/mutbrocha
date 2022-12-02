@@ -113,10 +113,10 @@
 		</dependency>
 
 		<!-- Adiciona a dependência do Flyway -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.flywaydb</groupId> -->
-<!-- 			<artifactId>flyway-core</artifactId> -->
-<!-- 		</dependency> -->
+ 		<dependency> 
+			<groupId>org.flywaydb</groupId> 
+ 			<artifactId>flyway-core</artifactId> 
+ 		</dependency> 
 
 		<!-- Adiciona dependências para facilitar o desenvolvimento -->
 		<dependency>
