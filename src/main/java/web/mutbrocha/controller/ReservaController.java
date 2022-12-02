@@ -14,14 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import web.mutbrocha.model.*;
-import web.mutbrocha.model.filter.ProdutoFilter;
 import web.mutbrocha.model.filter.ReservaFilter;
 import web.mutbrocha.pagination.PageWrapper;
-import web.mutbrocha.repository.CategoriaRepository;
 import web.mutbrocha.repository.ProdutoRepository;
 import web.mutbrocha.repository.ReservaRepository;
 import web.mutbrocha.repository.UserRepository;
-import web.mutbrocha.service.ProdutoService;
 import web.mutbrocha.service.ReservaProdutoService;
 import web.mutbrocha.service.ReservaService;
 
@@ -29,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/reserva")
@@ -80,11 +78,12 @@ public class ReservaController {
     @PostMapping("/cadastrar")
     public String cadastrar(Reservas reserva, HttpSession sessao) {
         reserva.setData_reserva(LocalDate.now());
-        reservaService.salvar(reserva);
+        Reservas reservaSalva = reservaService.salvarComId(reserva);
 
-        Reservas reservaNaSessao = buscarReservaNaSessao(sessao);
-        reservaNaSessao.setUser(reserva.getUser());
-        sessao.setAttribute("reserva", reservaNaSessao);
+//        Reservas reservaNaSessao = buscarReservaNaSessao(sessao);
+//        reservaSalva.setUser(reserva.getUser());
+        sessao.setAttribute("reserva", reservaSalva);
+
 
         return "redirect:/reserva/cadastro/sucesso";
     }
@@ -92,6 +91,7 @@ public class ReservaController {
     @GetMapping("/cadastro/sucesso")
     public String mostrarMensagemCadastroSucesso(Model model, Produtos produtos, HttpSession sessao) {
         Reservas reservasSessao = (Reservas) sessao.getAttribute("reserva");
+
         List<Produtos> produtosList = produtoRepository.findByStatus(Status.ATIVO);
 
         model.addAttribute("listProdutos", produtosList);
@@ -102,18 +102,11 @@ public class ReservaController {
     @PostMapping("/criarreservadoproduto")
     public String escolherProduto(Produtos produtos, HttpSession sessao, Model model) {
 
-        logger.error("Error " + produtos.toString());
-
-        Produtos produtosSessao = buscarProdutoNaSessao(sessao);
-        sessao.setAttribute("produto", produtos);
-
         ReservaProduto reservaProduto =  new ReservaProduto();
-        reservaProduto.setProduto(produtosSessao);
+        reservaProduto.setProduto(produtos);
         reservaProduto.setReserva((Reservas) sessao.getAttribute("reserva"));
 
-        logger.error("Error" + reservaProduto.toString());
-
-//      reservaProdutoService.salvar(reservaProduto);
+        reservaProdutoService.salvar(reservaProduto);
 
         String mensagem = "O " + reservaProduto.getReserva().getUser().getNome() + " reservou o produto " + reservaProduto.getProduto().getProduto();
         model.addAttribute("mensagem", mensagem);

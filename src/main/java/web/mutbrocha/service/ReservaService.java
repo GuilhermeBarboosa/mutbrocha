@@ -18,7 +18,12 @@ public class ReservaService {
 	public void salvar(Reservas reserva) {
 		reservaRepository.save(reserva);
 	}
-	
+
+	@Transactional
+	public Reservas salvarComId(Reservas reserva) {
+		return reservaRepository.save(reserva);
+	}
+
 	@Transactional
 	public void alterar(Reservas reserva) {
 		reservaRepository.save(reserva);

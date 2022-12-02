@@ -37,7 +37,7 @@ public class Produtos implements Serializable {
 	
 	private String img;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria")
 	private Categorias categoria;
 	

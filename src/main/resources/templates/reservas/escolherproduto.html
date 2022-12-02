@@ -22,8 +22,8 @@
 					<h5 th:text="${mensagem}">Mensagem</h5>
 				</div>
 				<div class="mb-3">
-					<label for="produtos" class="form-label">Produtos</label>
-					<select class="form-select" th:field="*{produto}">
+					<label for="produto" class="form-label">Produtos</label>
+					<select class="form-select" name="produtos">
 						<option th:each="p : ${listProdutos}" th:value="${p.id}" th:text="${p.produto}"></option>
 					</select>
 				</div>

@@ -19,11 +19,11 @@ public class ReservaProduto implements Serializable {
 	@GeneratedValue(generator="gerador6", strategy=GenerationType.SEQUENCE)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "reserva")
 	private Reservas reserva;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "produto")
 	private Produtos produto;
 
