@@ -15,26 +15,21 @@
 		<!-- conteudo principal -->
 		<main class="mt-5 p-4 pt-5">
 			<h2>Cadastrar</h2>
-			<form th:action="@{/usuario/cadastrar}" method="post" th:object="${user}">
+
+			<form th:action="@{/reserva/cadastrar}" method="post" th:object="${reservas}">
+			
 				<div class="mb-3">
-					<label for="nome" class="form-label">Nome</label>
-					<input type="text" class="form-control" th:field="*{nome}" placeholder="Digite o nome">
-				</div>
-				<div class="mb-3">
-					<label for="username" class="form-label">Nome de usuário</label>
-					<input type="text" class="form-control" th:field="*{username}" placeholder="Digite o username">
-				</div>
-				<div class="mb-3">
-					<label for="password" class="form-label">Senha</label>
-					<input type="text" class="form-control" th:field="*{password}" placeholder="Digite o password">
-				</div>
-				<div class="mb-3">
-					<label for="categoria" class="form-label">Tipo de usuário</label>
-					<select name="roles"  class="form-select">
-						<option th:each="roles : ${T(web.mutbrocha.model.Roles).values()}"
-							th:value="${roles}" th:text="${roles.descricao}"></option>
+					<label for="user" class="form-label">Usuário</label>
+					<select class="form-select" th:field="*{user}">
+						<option th:each="u : ${user}" th:value="${u.id}" th:text="${u.username}"></option>
 					</select>
 				</div>
+			
+				<div class="mb-3">
+					<label for="data_retirada" class="form-label">Data de retirada</label>
+					<input type="text" class="form-control componentedata" th:field="*{data_retirada}">
+				</div>
+
 				<button type="submit" class="btn btn-primary">Cadastrar</button>
 			</form>
 		</main>
