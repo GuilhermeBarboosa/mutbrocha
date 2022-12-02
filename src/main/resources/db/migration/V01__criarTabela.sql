@@ -73,28 +73,6 @@ ALTER TABLE public.categorias_id_seq OWNER TO postgres;
 ALTER SEQUENCE public.categorias_id_seq OWNED BY public.categorias.id;
 
 
---
--- TOC entry 214 (class 1259 OID 16517)
--- Name: flyway_schema_history; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.flyway_schema_history (
-    installed_rank integer NOT NULL,
-    version character varying(50),
-    description character varying(200) NOT NULL,
-    type character varying(20) NOT NULL,
-    script character varying(1000) NOT NULL,
-    checksum integer,
-    installed_by character varying(100) NOT NULL,
-    installed_on timestamp without time zone DEFAULT now() NOT NULL,
-    execution_time integer NOT NULL,
-    success boolean NOT NULL
-);
-
-
-ALTER TABLE public.flyway_schema_history OWNER TO postgres;
-
---
 -- TOC entry 218 (class 1259 OID 16537)
 -- Name: produtos; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -279,16 +257,6 @@ COPY public.categorias (id, categoria, status) FROM stdin;
 \.
 
 
---
--- TOC entry 3366 (class 0 OID 16517)
--- Dependencies: 214
--- Data for Name: flyway_schema_history; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.flyway_schema_history (installed_rank, version, description, type, script, checksum, installed_by, installed_on, execution_time, success) FROM stdin;
-1	01	criarTabela	SQL	V01__criarTabela.sql	-54232558	postgres	2022-12-02 08:42:20.619306	58	t
-\.
-
 
 --
 -- TOC entry 3370 (class 0 OID 16537)
@@ -443,14 +411,6 @@ ALTER TABLE ONLY public.categorias
     ADD CONSTRAINT categorias_pkey PRIMARY KEY (id);
 
 
---
--- TOC entry 3203 (class 2606 OID 16524)
--- Name: flyway_schema_history flyway_schema_history_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.flyway_schema_history
-    ADD CONSTRAINT flyway_schema_history_pk PRIMARY KEY (installed_rank);
-
 
 --
 -- TOC entry 3210 (class 2606 OID 16566)
@@ -497,15 +457,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_username_key UNIQUE (username);
 
 
---
--- TOC entry 3204 (class 1259 OID 16525)
--- Name: flyway_schema_history_s_idx; Type: INDEX; Schema: public; Owner: postgres
---
 
-CREATE INDEX flyway_schema_history_s_idx ON public.flyway_schema_history USING btree (success);
-
-
---
 -- TOC entry 3219 (class 2606 OID 16575)
 -- Name: authorities authorities_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
