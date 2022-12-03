@@ -12,30 +12,49 @@
 		<!-- conteudo principal -->
 		<main class="mt-5 p-4 pt-5">
 			<h2>Alterar</h2>
-			<form th:action="@{/usuario/alterar}" method="post" th:object="${user}">
+			<form th:action="@{/reserva/alterar}" method="post" th:object="${reservaProduto}">
 				<div class="mb-3">
-					<label for="id" class="form-label">Código: <span th:text="*{id}"></span></label>
+					<label for="id" class="form-label">Código: <span th:text="${reservaProduto.id}"></span></label>
 				</div>
-				<input type="hidden" name="id" th:value="*{id}">
+				<input type="hidden" name="id" th:value="${reservaProduto.id}">
+
 				<div class="mb-3">
-					<label for="nome" class="form-label">Nome</label>
-					<input type="text" class="form-control" th:field="*{nome}">
+					<label for="produto" class="form-label">Produto: <span th:text="${reservaProduto.produto.produto}"></span></label>
 				</div>
+				<input type="hidden" name="codigoProduto" th:value="${reservaProduto.produto.id}">
+
 				<div class="mb-3">
-					<label for="username" class="form-label">Username</label>
-					<input type="text" class="form-control" th:field="*{username}">
+					<label for="reserva" class="form-label">Reserva: <span th:text="${reservaProduto.reserva.user.username}"></span></label>
 				</div>
+				<input type="hidden" name="codigoReserva" th:value="${reservaProduto.reserva.id}">
+
+
 				<div class="mb-3">
-					<label for="password" class="form-label">Password</label>
-					<input type="text" class="form-control" th:field="*{password}">
-				</div>
-				<div class="mb-3">
-					<label for="categoria" class="form-label">Tipo de usuário</label>
-					<select name="roles"  class="form-select">
-						<option th:each="roles : ${T(web.mutbrocha.model.Roles).values()}"
-							th:value="${roles}" th:text="${roles.descricao}"></option>
+					<label for="user" class="form-label">Usuário</label>
+					<select class="form-select" name="codigoUser" id="user">
+					  <option value="" selected="selected">Não selecionada</option>
+					  <option
+						th:each="u : ${users}"
+						th:value="${u.id}"
+						th:text="${u.username}"
+					  ></option>
 					</select>
+				  </div>
+	  
+				  <div class="mb-3">
+					  <label for="produto" class="form-label">Produtos</label>
+					  <select class="form-select" name="codigoProdutoSelecionado" id="produto">
+						  <option value="" selected="selected">Não selecionada</option>
+						  <option th:each="p : ${listProdutos}" th:value="${p.id}" th:text="${p.produto}"></option>
+					  </select>
+				  </div>
+
+				  <div class="mb-3">
+					<label for="data_retirada" class="form-label">Data de retirada</label>
+					<input type="text" class="form-control componentedata" id="data_retirada" name="data_retirada">
 				</div>
+
+
 				<button type="submit" class="btn btn-primary">Alterar</button>
 			</form>
 		</main>

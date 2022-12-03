@@ -34,6 +34,13 @@
 						<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.categoria}"></option>
 					</select>
 				</div>
+				<div class="mb-3">
+					<label for="situacoes" class="form-label">Tipo de usuário</label>
+					<select name="roles"  class="form-select">
+						<option th:each="situacoes : ${T(web.mutbrocha.model.Situacoes).values()}"
+							th:value="${situacoes}" th:text="${situacoes.descricao}"></option>
+					</select>
+				</div>
 				<button type="submit" class="btn btn-primary">Alterar</button>
 			</form>
 		</main>

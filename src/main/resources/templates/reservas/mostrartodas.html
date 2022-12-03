@@ -15,10 +15,9 @@
 				<thead>
 					<tr>
 						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'id', 'Id', '')}"></div>
-						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'nome', 'Nome', '')}"></div>
+						<div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'produto', 'Produto', '')}"></div>
 						<th scope="col">Username</th>
-						<th scope="col">Senha</th>
-						<th scope="col">Tipo de usuário</th>
+						<th scope="col">Data de retirada</th>
 						<th scope="col">Alterar</th>
 						<th scope="col">Remover</th>
 					</tr>
@@ -26,30 +25,21 @@
 				<tbody>
 					<tr th:each="p : ${pagina.conteudo}">
 						<td th:text="${p.id}"></td>
-						<td th:text="${p.nome}"></td>
-						<td th:text="${p.username}"></td>
-						<td th:text="${p.password}"></td>
-						<td th:text="${p.roles.descricao}"></td>
-		
+						<td th:text="${p.produto.produto}"></td>
+						<td th:text="${p.reserva.user.nome}"></td>
+						<td th:text="${p.reserva.data_reserva}"></td>
+						<td th:text="${p.reserva.data_retirada}"></td>
 						<td>
-							<form th:action="@{/usuario/abriralterar}" method="post">
+							<form th:action="@{/reserva/abriralterar}" method="post">
 								<input type="hidden" name="id" th:value="${p.id}">
-								<input type="hidden" name="username" th:value="${p.username}">
-								<input type="hidden" name="password" th:value="${p.password}">
-								<input type="hidden" name="nome" th:value="${p.nome}">
-								<input type="hidden" name="p.roles" th:value="${p.roles.descricao}">
 								<button type="submit" title="Editar" class="btn btn-secondary">
 									<i class="bi bi-pencil-fill"></i>
 								</button>
 							</form>
 						</td>
 						<td>
-							<form th:action="@{/usuario/abrirremover}" method="post">
+							<form th:action="@{/reserva/abrirremover}" method="post">
 								<input type="hidden" name="id" th:value="${p.id}">
-								<input type="hidden" name="username" th:value="${p.username}">
-								<input type="hidden" name="password" th:value="${p.password}">
-								<input type="hidden" name="nome" th:value="${p.nome}">
-								<input type="hidden" name="p.roles" th:value="${p.roles.descricao}">
 								<button type="submit" title="Remover" class="btn btn-danger">
 									<i class="bi bi-trash-fill"> </i>
 								</button>

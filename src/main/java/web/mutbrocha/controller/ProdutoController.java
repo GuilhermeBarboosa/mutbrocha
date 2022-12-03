@@ -69,11 +69,11 @@ public class ProdutoController {
 	}
 	
 	@GetMapping("/pesquisar")
-	public String pesquisar(ProdutoFilter filtro, Model model, 
+	public String pesquisar(Categorias categoria, ProdutoFilter filtro, Model model, 
 			@PageableDefault(size = 10) 
     		@SortDefault(sort = "id", direction = Sort.Direction.ASC)
     		Pageable pageable, HttpServletRequest request) {
-		
+
 		Page<Produtos> pagina = produtoRepository.pesquisar(filtro, pageable);
 		PageWrapper<Produtos> paginaWrapper = new PageWrapper<>(pagina, request);
 		model.addAttribute("pagina", paginaWrapper);

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class ReservaProdutoFilter {
 
 	private Long id;
-	private Long reserva;
+	private Long usuario;
 	private Long produto;
 
 	public Long getId() {
@@ -16,12 +16,12 @@ public class ReservaProdutoFilter {
 		this.id = id;
 	}
 
-	public Long getReserva() {
-		return reserva;
+	public Long getUsuario() {
+		return usuario;
 	}
 
-	public void setReserva(Long reserva) {
-		this.reserva = reserva;
+	public void setUsuario(Long usuario) {
+		this.usuario = usuario;
 	}
 
 	public Long getProduto() {
@@ -34,10 +34,9 @@ public class ReservaProdutoFilter {
 
 	@Override
 	public String toString() {
-		return "ReservaProdutoFilter{" +
-				"id=" + id +
-				", reserva=" + reserva +
-				", produto=" + produto +
-				'}';
+		return "ReservaProdutoFilter [id=" + id + ", usuario=" + usuario + ", produto=" + produto + "]";
 	}
+
+	
+	
 }

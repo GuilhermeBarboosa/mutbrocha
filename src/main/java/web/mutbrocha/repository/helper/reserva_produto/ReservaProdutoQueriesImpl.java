@@ -1,8 +1,13 @@
 package web.mutbrocha.repository.helper.reserva_produto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+
+import web.mutbrocha.controller.ReservaController;
+import web.mutbrocha.model.Produtos;
 import web.mutbrocha.model.ReservaProduto;
 import web.mutbrocha.model.Reservas;
 import web.mutbrocha.model.Status;
@@ -16,6 +21,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.time.LocalDate;
@@ -24,6 +30,9 @@ import java.util.List;
 
 public class ReservaProdutoQueriesImpl implements ReservaProdutoQueries {
 
+	  private static final Logger logger = LoggerFactory.getLogger(ReservaProdutoQueriesImpl.class);
+
+	  
 	@PersistenceContext
 	private EntityManager manager;
 	
@@ -35,19 +44,21 @@ public class ReservaProdutoQueriesImpl implements ReservaProdutoQueries {
 		Root<ReservaProduto> p = criteriaQuery.from(ReservaProduto.class);
 		TypedQuery<ReservaProduto> typedQuery;
 		List<Predicate> predicateList = new ArrayList<>();
-
+		
+		
 		if (filtro.getId() != null) {
 			predicateList.add(builder.equal(p.<Long>get("id"), 
 		                 filtro.getId()));
 		}
 
-		if (filtro.getReserva() != null) {
-			predicateList.add(builder.equal(p.<Reservas>get("reserva").<Long>get("id"),
-					filtro.getReserva()));
+		if (filtro.getUsuario() != null) {
+			predicateList.add(builder.equal(p.<Reservas>get("reserva").<User>get("user").<Long>get("id"),
+					filtro.getUsuario()));
 		}
-
+		
 		if (filtro.getProduto() != null) {
-			predicateList.add(builder.equal(p.<User>get("produto").<Long>get("id"),
+
+			predicateList.add(builder.equal(p.<Produtos>get("produto").<Long>get("id"),
 					filtro.getProduto()));
 		}
 
@@ -66,6 +77,8 @@ public class ReservaProdutoQueriesImpl implements ReservaProdutoQueries {
 		
 		long totalReservasProdutos = PaginacaoUtil.getTotalRegistros(p, predArray, builder, manager);
 
+logger.error("Total de reservas" + totalReservasProdutos);
+		
 		Page<ReservaProduto> page = new PageImpl<>(reservaProdutos, pageable, totalReservasProdutos);
 		
 		return page;

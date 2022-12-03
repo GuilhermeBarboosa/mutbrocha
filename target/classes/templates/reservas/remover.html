@@ -14,28 +14,25 @@
 			<h1>Remover</h1>
 			<h2>Você tem certeza que quer remover a usuário:</h2>
 			<div class="mb-3">
-				<label class="form-label">
-					Código:
-					<span th:text="${user.id}"></span>
-				</label>
+				<label for="id" class="form-label">Código: <span th:text="${reserva.id}"></span></label>
 			</div>
+			<input type="hidden" name="id" th:value="${reserva.id}">
 
 			<div class="mb-3">
-				<label class="form-label">
-					Nome:
-					<span th:text="${user.nome}"></span>
-				</label>
-			</div>
+				<label for="produto" class="form-label">Produto: <span th:text="${reserva.produto.produto}"></span></label>
+			</div> 
+			<input type="hidden" name="codigoProduto" th:value="${reserva.produto.id}">
+
 			<div class="mb-3">
-				<label class="form-label">
-					Username:
-					<span th:text="${user.username}"></span>
-				</label>
-			</div>
-			<form th:action="@{/usuario/remover}" method="post">
-				<input type="hidden" name="id" th:value="${user.id}">
-				<input type="hidden" name="nome" th:value="${user.nome}">
-				<input type="hidden" name="username" th:value="${user.username}">
+				<label for="reserva" class="form-label">Reserva: <span th:text="${reserva.reserva.user.username}"></span></label>
+			</div> 
+			<input type="hidden" name="codigoReserva" th:value="${reserva.reserva.id}">
+
+
+			<form th:action="@{/reserva/remover}" method="post">
+				 <input type="hidden" name="id" th:value="${reserva.id}">
+				<input type="hidden" name="codigoProduto" th:value="${reserva.produto.id}">
+				<input type="hidden" name="codigoReserva" th:value="${reserva.reserva.id}"> 
 				<button type="submit" class="btn btn-danger">Remover</button>
 			</form>
 		</main>
