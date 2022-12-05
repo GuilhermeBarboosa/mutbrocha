@@ -25,6 +25,21 @@
 		/* 'Open Sans' font from Google Fonts */
 		@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
+		.register{
+			box-sizing: border-box;
+			display: block;
+			width: 100%;
+			color: rgb(0, 128, 255);
+			border-width: none;
+			border-style: none;
+			padding: 16px;
+			outline: 0;
+			font-family: inherit;
+			font-size: 0.95em;
+			font-weight: 300;
+			text-decoration: none;
+		}
+		
 		body {
 			background: #456;
 			font-family: 'Open Sans', sans-serif;
@@ -113,6 +128,8 @@
 			width: 40%;
 			margin: auto;
 		}
+
+	
 	</style>
 
 	<div layout:fragment="conteudo">
@@ -144,6 +161,10 @@
 						Deslogado
 					</div>
 					<p><input type="submit" value="Entrar"></p>
+				</form>
+
+				<form method="get" th:action="@{/register}"  class="login-container">
+					<button class="register">Register</button>
 				</form>
 			</div>
 

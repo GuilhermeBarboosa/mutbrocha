@@ -29,14 +29,12 @@
 			box-sizing: border-box;
 			display: block;
 			width: 100%;
-			color: rgb(0, 128, 255);
 			border-width: none;
 			border-style: none;
 			padding: 16px;
 			outline: 0;
 			font-family: inherit;
 			font-size: 0.95em;
-			font-weight: 300;
 			text-decoration: none;
 		}
 		
@@ -137,34 +135,24 @@
 	
 			<div class="login position-absolute top-50 start-50 translate-middle">
 				<!-- <div class="login-triangle"></div> -->
-
-				<h2 class="login-header">
-					<img th:src="@{/images/logo_mutbrocha.png}" class="img-fluid logo rounded d-block">
-				</h2>
-
-				<form th:action="@{/login}" method="post" class="login-container">
+				<form th:action="@{/registerconta}" method="post" class="login-container" th:object="${user}">
 
 					<div class="mb-3">
-					<label class="fw-bold" >Username</label>
-					<input type="text" name="username" required="">
+						<label for="nome" class="fw-bold" >Nome</label>
+						<input type="text" th:field="*{nome}" >
 					</div>
 
 					<div class="mb-3">
-					<label class="fw-bold">Password</label>
-					<input type="password" name="password" required="">
+					<label for="username" class="fw-bold"  >Username</label>
+					<input type="text" th:field="*{username}">
 					</div>
 
-					<div th:if="${param.error}" style="color: red;">
-						Invalid username and password.
+					<div class="mb-3">
+					<label for="password" class="fw-bold">Password</label>
+					<input type="password" th:field="*{password}">
 					</div>
-					<div th:if="${param.logout}" style="color: green;">
-						Deslogado
-					</div>
-					<p><input type="submit" value="Entrar"></p>
-				</form>
 
-				<form method="get" th:action="@{/register}"  class="login-container">
-					<button class="register">Register</button>
+					<p><input type="submit" value="registrar"></p>
 				</form>
 			</div>
 
