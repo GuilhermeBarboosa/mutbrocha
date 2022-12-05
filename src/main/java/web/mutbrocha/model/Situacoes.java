@@ -3,7 +3,8 @@ package web.mutbrocha.model;
 public enum Situacoes{
 
 	RESERVADO("Reservado"),
-	DISPONIVEL("Disponivel");
+	DISPONIVEL("Disponivel"),
+	COMPRADO("Comprado");
 	
 	private String descricao;
 	

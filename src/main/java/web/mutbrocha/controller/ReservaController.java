@@ -28,6 +28,7 @@ import web.mutbrocha.service.ReservaService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.security.Principal;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -249,6 +250,62 @@ public class ReservaController {
 	@GetMapping("/remover/sucesso")
 	public String mostrarMensagemRemoverSucesso(Model model) {
 		model.addAttribute("mensagem", "Remoção (INATIVO) de reserva efetuada com sucesso.");
+		return "mostrarmensagem";
+	}
+	
+	
+	@PostMapping("/confirmarvenda")
+	public String confirmarVenda(Long id, Model model) {
+		
+		ReservaProduto reservaProduto = reservaProdutoRepository.findById(id).get();
+		model.addAttribute("reservaProduto", reservaProduto);
+
+		return "reservas/confirmar";
+	}
+	
+	@PostMapping("/confirmavendadoproduto")
+	public String confirmaVendaProduto(Long id, Model model) {
+		
+		ReservaProduto reservaProduto = reservaProdutoRepository.findById(id).get();
+		model.addAttribute("reservaProduto", reservaProduto);
+
+		Produtos produto = reservaProduto.getProduto();
+		produto.setSituacao(Situacoes.COMPRADO);
+		produtoService.alterar(produto);
+		
+		model.addAttribute("mensagem", "O produto " + " ("+ produto.getId() +") "+ produto.getProduto() +" foi vendido!");
+		return "mostrarmensagem";
+	}
+	
+	
+	@GetMapping("/mostrarpedidosusuario")
+	public String mostrar(Principal principal, ReservaProdutoFilter filtro, Model model,
+			@PageableDefault(size = 10) @SortDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+			HttpServletRequest request) {
+		
+		User user = userRepository.findByusername(principal.getName());
+
+		if (user != null) {
+			filtro.setUsuario(user.getId());
+		}
+
+		Page<ReservaProduto> pagina = reservaProdutoRepository.pesquisar(filtro, pageable);
+		PageWrapper<ReservaProduto> paginaWrapper = new PageWrapper<>(pagina, request);
+		
+		logger.error("" + pagina.getTotalPages());
+		
+		if(paginaWrapper.isVazia()) {
+			return "redirect:/reserva/listavazia";
+		}else {
+			model.addAttribute("pagina", paginaWrapper);
+		}
+	
+		return "reservas/mostrarpedidousuario";
+	}
+	
+	@GetMapping("/listavazia")
+	public String listaVazia(Model model) {
+		model.addAttribute("mensagem", "Não há nenhuma compra... Ligue hoje para nossa agência e realize uma encomenda (34) 98473-9475");
 		return "mostrarmensagem";
 	}
 }

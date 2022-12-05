@@ -26,6 +26,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //				.authenticated().and()
 //				.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/", true).permitAll())
 //				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login")).csrf().disable();
+		
+		 http
+	        .authorizeRequests()
+	            .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
+	            .anyRequest().authenticated()
+	        .and()
+	        .formLogin(form -> form
+	                .loginPage("/login")
+	                .defaultSuccessUrl("/", true)
+	                .permitAll()
+	        )
+	        .logout(logout -> logout.logoutUrl("/logout")
+	                .logoutSuccessUrl("/login")
+	        )
+	        .csrf().disable();
+
 	}
 
 	@Override
