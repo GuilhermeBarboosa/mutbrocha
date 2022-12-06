@@ -11,6 +11,7 @@ web\mutbrocha\formatter\BigDecimalFormatter.class
 web\mutbrocha\repository\ReservaProdutoRepository.class
 web\mutbrocha\validation\util\AttributesRelation.class
 web\mutbrocha\model\filter\ReservaFilter.class
+web\mutbrocha\controller\RelatoriosController.class
 web\mutbrocha\validation\validator\BigDecimalAttributesRelationValidator.class
 web\mutbrocha\validation\IntegerAttributesRelation.class
 web\mutbrocha\validation\BigDecimalAttributesRelation.class
@@ -82,6 +83,7 @@ web\mutbrocha\controller\advice\InputSpacesTrimmNull.class
 web\mutbrocha\ajax\RespostaJSON.class
 web\mutbrocha\model\filter\UserFilter.class
 web\mutbrocha\repository\helper\reserva_produto\ReservaProdutoQueriesImpl.class
+web\mutbrocha\service\RelatorioService.class
 web\mutbrocha\formatter\LocalDateTimeFormatter.class
 web\mutbrocha\validation\validator\NotNullIfAnotherFieldHasValueValidator.class
 web\mutbrocha\model\User.class

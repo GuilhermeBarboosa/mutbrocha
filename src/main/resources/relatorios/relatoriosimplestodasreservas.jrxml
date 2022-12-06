@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7368b1d7-a7f6-4358-982a-c52d100827e1">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dadosusuarioreport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7368b1d7-a7f6-4358-982a-c52d100827e1">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="mutbrocha"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT c.categoria,
 	p.situacao,
 	p.produto,
-	u.username,
-	u.nome,
+	u.*,
 	r.data_reserva,
 	r.data_retirada
 FROM users AS u,
@@ -37,14 +36,39 @@ WHERE
 		<property name="com.jaspersoft.studio.field.label" value="produto"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
 	</field>
-	<field name="username" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="username"/>
-		<property name="com.jaspersoft.studio.field.label" value="username"/>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="enabled" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="enabled"/>
+		<property name="com.jaspersoft.studio.field.label" value="enabled"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
 	</field>
 	<field name="nome" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="nome"/>
 		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="password" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="password"/>
+		<property name="com.jaspersoft.studio.field.label" value="password"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="roles" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="roles"/>
+		<property name="com.jaspersoft.studio.field.label" value="roles"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="username" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="username"/>
+		<property name="com.jaspersoft.studio.field.label" value="username"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
 	</field>
 	<field name="data_reserva" class="java.sql.Date">
@@ -79,7 +103,7 @@ WHERE
 		</band>
 	</title>
 	<detail>
-		<band height="91" splitType="Stretch">
+		<band height="110" splitType="Stretch">
 			<rectangle>
 				<reportElement x="15" y="18" width="80" height="31" uuid="0d56dfa5-0a83-43dd-9727-8b4ce14e7f57"/>
 			</rectangle>
@@ -176,6 +200,17 @@ WHERE
 				</textElement>
 				<text><![CDATA[Situacao]]></text>
 			</staticText>
+			<rectangle>
+				<reportElement x="15" y="79" width="524" height="31" uuid="4d2d9c6c-c855-4441-86e2-bdb5a52fdc9c"/>
+			</rectangle>
+			<subreport>
+				<reportElement x="17" y="80" width="524" height="30" uuid="15734a5c-d40a-4811-b048-e662bf318524"/>
+				<subreportParameter name="IDPESSOA">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["relatorios/dadosusuario.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<pageFooter>

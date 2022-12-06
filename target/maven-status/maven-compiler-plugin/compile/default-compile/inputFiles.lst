@@ -7,6 +7,7 @@ C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbr
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\validation\ValidUsername.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\ajax\TipoNotificaoAlertify.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\ajax\TipoResposta.java
+C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\controller\RelatoriosController.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\aop\ApplicationLoggingAspect.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\repository\helper\user\UserQueries.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\model\User.java
@@ -68,6 +69,7 @@ C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbr
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\validation\validator\UniqueValueAttributeValidator.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\controller\IndexController.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\validation\validator\BigIntegerAttributesRelationValidator.java
+C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\service\RelatorioService.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\formatter\TemporalFormatter.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\Application.java
 C:\Users\guilherme.rocha\Documents\Codigos git\mutbrocha\src\main\java\web\mutbrocha\repository\helper\produto\ProdutoQueriesImpl.java

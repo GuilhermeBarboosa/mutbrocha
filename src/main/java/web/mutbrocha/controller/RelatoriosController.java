@@ -23,26 +23,14 @@ private static final Logger logger = LoggerFactory.getLogger(RelatoriosControlle
 	private RelatorioService relatorioService;
 	
 	@GetMapping("/simples")
-	public ResponseEntity<byte[]> gerarRelatorioSimplesTodasReservas() {
+	public ResponseEntity<byte[]> gerarRelatorioComplexoTodasReservas() {
 
-		byte[] relatorio = relatorioService.gerarRelatorioSimplesTodasReservas();
-		
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE)
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ReservasSimples.pdf")
-				.body(relatorio);
-	}
-	
-	@GetMapping("/porusuario")
-	public ResponseEntity<byte[]> gerarRelatorioComplexoTodasReservasPorUsuario() {
-
-		byte[] relatorio = relatorioService.gerarRelatorioComplexoTodasReservasPorUsuario();
+		byte[] relatorio = relatorioService.gerarRelatorioComplexoTodasReservas();
 
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_PDF_VALUE)
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=ReservasPorUsuario.pdf")
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=TodasReservas.pdf")
 				.body(relatorio);
 	}
-
 
 }
