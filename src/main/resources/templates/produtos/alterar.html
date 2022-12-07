@@ -36,7 +36,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="situacoes" class="form-label">Situação</label>
-					<select name="roles"  class="form-select">
+					<select name="situacao"  class="form-select">
 						<option th:each="situacoes : ${T(web.mutbrocha.model.Situacoes).values()}"
 							th:value="${situacoes}" th:text="${situacoes.descricao}"></option>
 					</select>

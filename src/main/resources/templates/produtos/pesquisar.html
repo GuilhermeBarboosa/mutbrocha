@@ -36,6 +36,14 @@
 						<option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.categoria}"></option>
 					</select>
 				</div>
+
+				<div class="mb-3">
+					<label for="users" class="form-label">Vendedor</label>
+					<select class="form-select" name="user">
+						<option value="" selected="selected">Não selecionada</option>
+						<option th:each="u : ${users}" th:value="${u.id}" th:text="${u.username}"></option>
+					</select>
+				</div>
 					
 					<div class="mb-3">
 						<label for="categorias" class="form-label">Situações</label> <select
