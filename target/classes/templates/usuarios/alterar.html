@@ -19,15 +19,15 @@
 				<input type="hidden" name="id" th:value="*{id}">
 				<div class="mb-3">
 					<label for="nome" class="form-label">Nome</label>
-					<input type="text" class="form-control" th:field="*{nome}">
+					<input type="text" class="form-control" th:field="*{nome}" required>
 				</div>
 				<div class="mb-3">
 					<label for="username" class="form-label">Username</label>
-					<input type="text" class="form-control" th:field="*{username}">
+					<input type="text" class="form-control" th:field="*{username}" required>
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">Password</label>
-					<input type="text" class="form-control" th:field="*{password}">
+					<input type="text" class="form-control" th:field="*{password}" required>
 				</div>
 				<div class="mb-3">
 					<label for="categoria" class="form-label">Tipo de usuário</label>

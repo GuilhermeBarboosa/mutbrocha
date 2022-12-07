@@ -22,11 +22,11 @@
 				<input type="hidden" name="id" th:value="*{id}">
 				<div class="mb-3">
 					<label for="produto" class="form-label">Produto</label>
-					<input type="text" class="form-control" th:field="*{produto}">
+					<input type="text" class="form-control" th:field="*{produto}" required>
 				</div>
 				<div class="mb-3">
 					<label for="img" class="form-label">Imagem</label>
-					<input type="text" class="form-control" th:field="*{img}">
+					<input type="text" class="form-control" th:field="*{img}" required>
 				</div>
 				<div class="mb-3">
 					<label for="categoria" class="form-label">Categorias</label>
