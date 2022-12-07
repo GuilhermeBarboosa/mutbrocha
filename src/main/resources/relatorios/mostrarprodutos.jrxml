@@ -32,6 +32,11 @@ where p.id_usuario = $P{id_usuario}]]>
 		<property name="com.jaspersoft.studio.field.label" value="produto"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
 	</field>
+	<field name="img" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="img"/>
+		<property name="com.jaspersoft.studio.field.label" value="img"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
 	<field name="categoria" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.name" value="categoria"/>
 		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
@@ -51,6 +56,11 @@ where p.id_usuario = $P{id_usuario}]]>
 		<property name="com.jaspersoft.studio.field.name" value="id_usuario"/>
 		<property name="com.jaspersoft.studio.field.label" value="id_usuario"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="produtos"/>
+	</field>
+	<field name="COLUMN_8" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.label" value="categoria"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="categorias"/>
 	</field>
 	<background>
 		<band splitType="Stretch"/>
@@ -74,7 +84,7 @@ where p.id_usuario = $P{id_usuario}]]>
 			</staticText>
 			<textField>
 				<reportElement x="60" y="40" width="100" height="30" uuid="50299a21-0eda-4e6a-b15d-16cc1bb53bc4"/>
-				<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{COLUMN_8}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="10" y="70" width="50" height="30" uuid="bf48bc63-9aca-4a77-81ff-913cc82c0429"/>

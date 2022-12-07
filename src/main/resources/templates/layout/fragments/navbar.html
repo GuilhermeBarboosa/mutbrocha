@@ -15,17 +15,17 @@
         <a class="navbar-brand fw-bold text-uppercase me-auto" th:href="@{/}">Controle de Produtos</a>
 
         <!-- parte da direita -->
-        <div class="d-flex justify-content-end align-items-center">
+        <div class="d-flex justify-content-end align-items-center me-md-3">
           <!-- botao login -->
          <form action="#" method="post" sec:authorize="isAuthenticated()">
 
-          <span class="fs-4 text-white"> <span sec:authentication="name"></span> <i class="bi bi-person-fill ms-2"></i> </span>
-
+          <span class="fs-4 text-white"> <i class="bi bi-person-fill ms-2"></i> <span sec:authentication="name" class="me-md-3"></span>  </span>
+s
           </form>
 
           <!-- botao logout -->
           <form th:action="@{/logout}" onclick="document.querySelector('#form-login').submit()" sec:authorize="isAuthenticated()" method="post">
-            <input type="submit" class="form-control btn btn-warning" value="Logout" />
+            <input type="submit" class="form-control btn btn-warning me-md-3" value="Logout" />
           </form>
         </div>
       </div>

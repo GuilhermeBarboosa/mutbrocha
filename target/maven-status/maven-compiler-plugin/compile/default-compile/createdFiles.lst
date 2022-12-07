@@ -85,6 +85,7 @@ web\mutbrocha\ajax\RespostaJSON.class
 web\mutbrocha\model\filter\UserFilter.class
 web\mutbrocha\repository\helper\reserva_produto\ReservaProdutoQueriesImpl.class
 web\mutbrocha\service\RelatorioService.class
+web\mutbrocha\service\UsernameUnicoService.class
 web\mutbrocha\formatter\LocalDateTimeFormatter.class
 web\mutbrocha\validation\validator\NotNullIfAnotherFieldHasValueValidator.class
 web\mutbrocha\model\User.class

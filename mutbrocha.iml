@@ -31,9 +31,10 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.22" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.22" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.22" level="project" />
+    <orderEntry type="library" name="Maven: org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.36" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-thymeleaf:2.7.3" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf-spring5:3.0.15.RELEASE" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.36" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.groovy:groovy:3.0.12" level="project" />
@@ -93,10 +94,10 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-aspects:5.3.22" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.postgresql:postgresql:42.3.6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.checkerframework:checker-qual:3.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.69" level="project" />
     <orderEntry type="library" name="Maven: net.sf.jasperreports:jasperreports:6.18.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.2" level="project" />
     <orderEntry type="library" name="Maven: com.lowagie:itext:2.1.7.js9" level="project" />
-    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.68" level="project" />
     <orderEntry type="library" name="Maven: org.jfree:jcommon:1.0.23" level="project" />
     <orderEntry type="library" name="Maven: org.jfree:jfreechart:1.0.19" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jdt:ecj:3.21.0" level="project" />

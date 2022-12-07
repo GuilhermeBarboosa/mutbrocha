@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.5 (Debian 14.5-1.pgdg110+1)
--- Dumped by pg_dump version 14.4
+-- Dumped from database version 15.1
+-- Dumped by pg_dump version 15.1
 
--- Started on 2022-12-07 01:25:45 UTC
+-- Started on 2022-12-07 12:35:13
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -23,7 +23,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 209 (class 1259 OID 17415)
+-- TOC entry 214 (class 1259 OID 16985)
 -- Name: authorities; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -36,7 +36,7 @@ CREATE TABLE public.authorities (
 ALTER TABLE public.authorities OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 17420)
+-- TOC entry 215 (class 1259 OID 16990)
 -- Name: categorias; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -50,7 +50,7 @@ CREATE TABLE public.categorias (
 ALTER TABLE public.categorias OWNER TO postgres;
 
 --
--- TOC entry 211 (class 1259 OID 17425)
+-- TOC entry 216 (class 1259 OID 16995)
 -- Name: categorias_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -65,16 +65,7 @@ CREATE SEQUENCE public.categorias_id_seq
 ALTER TABLE public.categorias_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3366 (class 0 OID 0)
--- Dependencies: 211
--- Name: categorias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.categorias_id_seq OWNED BY public.categorias.id;
-
-
---
--- TOC entry 212 (class 1259 OID 17426)
+-- TOC entry 217 (class 1259 OID 16996)
 -- Name: produtos; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -92,7 +83,7 @@ CREATE TABLE public.produtos (
 ALTER TABLE public.produtos OWNER TO postgres;
 
 --
--- TOC entry 213 (class 1259 OID 17431)
+-- TOC entry 218 (class 1259 OID 17001)
 -- Name: produtos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -107,16 +98,7 @@ CREATE SEQUENCE public.produtos_id_seq
 ALTER TABLE public.produtos_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3367 (class 0 OID 0)
--- Dependencies: 213
--- Name: produtos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.produtos_id_seq OWNED BY public.produtos.id;
-
-
---
--- TOC entry 214 (class 1259 OID 17432)
+-- TOC entry 219 (class 1259 OID 17002)
 -- Name: reserva_produto; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -131,7 +113,7 @@ CREATE TABLE public.reserva_produto (
 ALTER TABLE public.reserva_produto OWNER TO postgres;
 
 --
--- TOC entry 215 (class 1259 OID 17435)
+-- TOC entry 220 (class 1259 OID 17005)
 -- Name: reserva_produto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -146,16 +128,7 @@ CREATE SEQUENCE public.reserva_produto_id_seq
 ALTER TABLE public.reserva_produto_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3368 (class 0 OID 0)
--- Dependencies: 215
--- Name: reserva_produto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.reserva_produto_id_seq OWNED BY public.reserva_produto.id;
-
-
---
--- TOC entry 216 (class 1259 OID 17436)
+-- TOC entry 221 (class 1259 OID 17006)
 -- Name: reservas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -171,7 +144,7 @@ CREATE TABLE public.reservas (
 ALTER TABLE public.reservas OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 17441)
+-- TOC entry 222 (class 1259 OID 17011)
 -- Name: reservas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -186,16 +159,7 @@ CREATE SEQUENCE public.reservas_id_seq
 ALTER TABLE public.reservas_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3369 (class 0 OID 0)
--- Dependencies: 217
--- Name: reservas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.reservas_id_seq OWNED BY public.reservas.id;
-
-
---
--- TOC entry 218 (class 1259 OID 17442)
+-- TOC entry 223 (class 1259 OID 17012)
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -213,7 +177,7 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 17447)
+-- TOC entry 224 (class 1259 OID 17017)
 -- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -228,8 +192,8 @@ CREATE SEQUENCE public.user_id_seq
 ALTER TABLE public.user_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3370 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3377 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -237,165 +201,118 @@ ALTER SEQUENCE public.user_id_seq OWNED BY public.users.id;
 
 
 --
--- TOC entry 3350 (class 0 OID 17415)
--- Dependencies: 209
+-- TOC entry 3361 (class 0 OID 16985)
+-- Dependencies: 214
 -- Data for Name: authorities; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.authorities (username, authority) FROM stdin;
 gui	ROLE_ADM
+adm	ROLE_ADM
+user	ROLE_USER
 \.
 
 
 --
--- TOC entry 3351 (class 0 OID 17420)
--- Dependencies: 210
+-- TOC entry 3362 (class 0 OID 16990)
+-- Dependencies: 215
 -- Data for Name: categorias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.categorias (id, categoria, status) FROM stdin;
-2	Tecnologia	ATIVO
-1	Roupa	INATIVO
 \.
 
 
 --
--- TOC entry 3353 (class 0 OID 17426)
--- Dependencies: 212
+-- TOC entry 3364 (class 0 OID 16996)
+-- Dependencies: 217
 -- Data for Name: produtos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.produtos (id, produto, img, categoria, status, situacao, id_usuario) FROM stdin;
-1	Notebook	https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/14-3420/media-gallery/peripherals_laptop_latitude_3420nt_gallery_3.psd?fmt=pjpg&pscan=auto&scl=1&hei=402&wid=573&qlt=100,1&resMode=sharp2&size=573,402&chrss=full	2	ATIVO	RESERVADO	1
-2	Notebook dell	https://i.dell.com/is/image/DellContent//content/dam/ss2/product-images/dell-client-products/notebooks/latitude-notebooks/14-3420/media-gallery/peripherals_laptop_latitude_3420nt_gallery_3.psd?fmt=pjpg&pscan=auto&scl=1&hei=402&wid=573&qlt=100,1&resMode=sharp2&size=573,402&chrss=full	2	ATIVO	DISPONIVEL	1
-3	Teclado	https://m.media-amazon.com/images/I/51321mjdahL._AC_SY450_.jpg	2	ATIVO	DISPONIVEL	1
 \.
 
 
 --
--- TOC entry 3355 (class 0 OID 17432)
--- Dependencies: 214
+-- TOC entry 3366 (class 0 OID 17002)
+-- Dependencies: 219
 -- Data for Name: reserva_produto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.reserva_produto (id, reserva, produto, status) FROM stdin;
-9	52	2	ATIVO
-10	53	2	ATIVO
 \.
 
 
 --
--- TOC entry 3357 (class 0 OID 17436)
--- Dependencies: 216
+-- TOC entry 3368 (class 0 OID 17006)
+-- Dependencies: 221
 -- Data for Name: reservas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.reservas (id, usuario, data_reserva, data_retirada, status) FROM stdin;
-15	1	2022-12-02	2022-12-29	ATIVO
-16	1	2022-12-02	2022-12-23	ATIVO
-17	1	2022-12-02	2022-12-23	ATIVO
-18	1	2022-12-02	2022-12-21	ATIVO
-19	1	2022-12-02	2022-12-22	ATIVO
-20	1	2022-12-02	2022-12-22	ATIVO
-21	1	2022-12-02	2022-12-22	ATIVO
-22	1	2022-12-02	2022-12-30	ATIVO
-23	1	2022-12-02	2022-12-22	ATIVO
-24	1	2022-12-02	2022-12-23	ATIVO
-25	1	2022-12-02	2022-12-22	ATIVO
-26	1	2022-12-02	2022-12-23	ATIVO
-27	1	2022-12-02	2022-12-15	ATIVO
-28	1	2022-12-02	2022-12-15	ATIVO
-29	1	2022-12-02	2022-12-21	ATIVO
-30	1	2022-12-02	2022-12-14	ATIVO
-31	1	2022-12-02	2022-12-22	ATIVO
-32	1	2022-12-02	2022-12-22	ATIVO
-33	1	2022-12-02	2022-12-22	ATIVO
-34	1	2022-12-02	2022-12-22	ATIVO
-35	1	2022-12-02	2022-12-14	ATIVO
-36	1	2022-12-02	2022-12-14	ATIVO
-37	1	2022-12-02	2022-12-22	ATIVO
-38	1	2022-12-02	2022-12-14	ATIVO
-39	1	2022-12-02	2022-12-22	ATIVO
-40	1	2022-12-02	2022-12-14	ATIVO
-41	1	2022-12-02	2022-12-13	ATIVO
-42	1	2022-12-02	2022-12-14	ATIVO
-43	1	2022-12-02	2022-12-14	ATIVO
-44	1	2022-12-02	2022-12-13	ATIVO
-45	1	2022-12-02	2022-12-21	ATIVO
-46	1	2022-12-02	2022-12-14	ATIVO
-47	1	2022-12-02	2022-12-15	ATIVO
-48	1	2022-12-02	2022-12-15	ATIVO
-49	1	2022-12-02	2022-12-13	ATIVO
-50	1	2022-12-02	2022-12-14	ATIVO
-51	1	2022-12-02	2022-12-22	ATIVO
-52	1	2022-12-02	2022-12-08	ATIVO
-53	1	2022-12-02	2022-12-23	ATIVO
-54	1	2022-12-02	2022-12-15	ATIVO
-55	1	2022-12-02	2022-12-21	ATIVO
-56	1	2022-12-02	2022-12-15	ATIVO
-57	1	2022-12-02	2022-12-15	ATIVO
-58	1	2022-12-02	2022-12-22	ATIVO
 \.
 
 
 --
--- TOC entry 3359 (class 0 OID 17442)
--- Dependencies: 218
+-- TOC entry 3370 (class 0 OID 17012)
+-- Dependencies: 223
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.users (id, enabled, nome, password, roles, status, username) FROM stdin;
-1	t	Guilherme	$2a$12$EELDigk5bvxpMcZsNKyQgeurSNYad1Hp0siEUblFBVvIR1l67HBMa	ROLE_ADM	ATIVO	gui
+2	t	adm	$2a$10$vUj4Dz0KvKQ1bkrrDbzEqOq3OEulBNjqkMEbDfW.5/8fFCcf79Uo2	ROLE_ADM	ATIVO	adm
+1	t	Guilherme	$2a$10$HHd1wKsOo4ulldMD5JWZZ.eoeAgTENtVMnXzrCU9nzIlMomB/65O2	ROLE_ADM	ATIVO	gui
+3	t	user	$2a$10$Hkqr0fp3HVDREHdfFOD2xOzP.gVhPn5gkfLeeG8pkGpXgAUDFsr56	ROLE_USER	ATIVO	user
 \.
 
 
 --
--- TOC entry 3371 (class 0 OID 0)
--- Dependencies: 211
+-- TOC entry 3378 (class 0 OID 0)
+-- Dependencies: 216
 -- Name: categorias_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.categorias_id_seq', 2, true);
+SELECT pg_catalog.setval('public.categorias_id_seq', 1, true);
 
 
 --
--- TOC entry 3372 (class 0 OID 0)
--- Dependencies: 213
+-- TOC entry 3379 (class 0 OID 0)
+-- Dependencies: 218
 -- Name: produtos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.produtos_id_seq', 3, true);
+SELECT pg_catalog.setval('public.produtos_id_seq', 1, true);
 
 
 --
--- TOC entry 3373 (class 0 OID 0)
--- Dependencies: 215
+-- TOC entry 3380 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: reserva_produto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.reserva_produto_id_seq', 10, true);
+SELECT pg_catalog.setval('public.reserva_produto_id_seq', 1, true);
 
 
 --
--- TOC entry 3374 (class 0 OID 0)
--- Dependencies: 217
+-- TOC entry 3381 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: reservas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.reservas_id_seq', 58, true);
+SELECT pg_catalog.setval('public.reservas_id_seq', 1, true);
 
 
 --
--- TOC entry 3375 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 3382 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_id_seq', 1, false);
+SELECT pg_catalog.setval('public.user_id_seq', 3, true);
 
 
 --
--- TOC entry 3192 (class 2606 OID 17449)
+-- TOC entry 3198 (class 2606 OID 17019)
 -- Name: authorities authorities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -404,7 +321,7 @@ ALTER TABLE ONLY public.authorities
 
 
 --
--- TOC entry 3194 (class 2606 OID 17451)
+-- TOC entry 3200 (class 2606 OID 17021)
 -- Name: categorias categorias_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -413,7 +330,7 @@ ALTER TABLE ONLY public.categorias
 
 
 --
--- TOC entry 3196 (class 2606 OID 17453)
+-- TOC entry 3202 (class 2606 OID 17023)
 -- Name: produtos produtos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -422,7 +339,7 @@ ALTER TABLE ONLY public.produtos
 
 
 --
--- TOC entry 3198 (class 2606 OID 17455)
+-- TOC entry 3204 (class 2606 OID 17025)
 -- Name: reserva_produto reserva_produto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -431,7 +348,7 @@ ALTER TABLE ONLY public.reserva_produto
 
 
 --
--- TOC entry 3200 (class 2606 OID 17457)
+-- TOC entry 3206 (class 2606 OID 17027)
 -- Name: reservas reservas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -440,7 +357,16 @@ ALTER TABLE ONLY public.reservas
 
 
 --
--- TOC entry 3202 (class 2606 OID 17459)
+-- TOC entry 3208 (class 2606 OID 17064)
+-- Name: users ukr43af9ap4edm43mmtq01oddj6; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT ukr43af9ap4edm43mmtq01oddj6 UNIQUE (username);
+
+
+--
+-- TOC entry 3210 (class 2606 OID 17029)
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -449,7 +375,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3204 (class 2606 OID 17461)
+-- TOC entry 3212 (class 2606 OID 17031)
 -- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -458,7 +384,7 @@ ALTER TABLE ONLY public.users
 
 
 --
--- TOC entry 3205 (class 2606 OID 17462)
+-- TOC entry 3213 (class 2606 OID 17032)
 -- Name: authorities authorities_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -467,7 +393,7 @@ ALTER TABLE ONLY public.authorities
 
 
 --
--- TOC entry 3206 (class 2606 OID 17467)
+-- TOC entry 3214 (class 2606 OID 17037)
 -- Name: produtos produtos_categoria_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -476,7 +402,7 @@ ALTER TABLE ONLY public.produtos
 
 
 --
--- TOC entry 3207 (class 2606 OID 17487)
+-- TOC entry 3215 (class 2606 OID 17042)
 -- Name: produtos produtos_id_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -485,7 +411,7 @@ ALTER TABLE ONLY public.produtos
 
 
 --
--- TOC entry 3208 (class 2606 OID 17472)
+-- TOC entry 3216 (class 2606 OID 17047)
 -- Name: reserva_produto reserva_produto_produto_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -494,7 +420,7 @@ ALTER TABLE ONLY public.reserva_produto
 
 
 --
--- TOC entry 3209 (class 2606 OID 17477)
+-- TOC entry 3217 (class 2606 OID 17052)
 -- Name: reserva_produto reserva_produto_reserva_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -503,7 +429,7 @@ ALTER TABLE ONLY public.reserva_produto
 
 
 --
--- TOC entry 3210 (class 2606 OID 17482)
+-- TOC entry 3218 (class 2606 OID 17057)
 -- Name: reservas reservas_usuario_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -511,8 +437,9 @@ ALTER TABLE ONLY public.reservas
     ADD CONSTRAINT reservas_usuario_fkey FOREIGN KEY (usuario) REFERENCES public.users(id) NOT VALID;
 
 
--- Completed on 2022-12-07 01:25:45 UTC
+-- Completed on 2022-12-07 12:35:13
 
 --
 -- PostgreSQL database dump complete
 --
+

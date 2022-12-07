@@ -7,7 +7,8 @@
 		<![CDATA[SELECT username,
 	id,
 	nome
-FROM users]]>
+FROM users
+WHERE users.roles != 'ROLE_USER']]>
 	</queryString>
 	<field name="username" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="username"/>
