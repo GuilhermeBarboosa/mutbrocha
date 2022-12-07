@@ -1,40 +1,36 @@
 package web.mutbrocha.model;
 
-import java.util.List;
+import web.mutbrocha.service.UsernameUnicoService;
+import web.mutbrocha.validation.UniqueValueAttribute;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
-public class User {
-
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@SequenceGenerator(name="gerador4", sequenceName="user_id_seq", allocationSize=1)
 	@GeneratedValue(generator="gerador4", strategy=GenerationType.SEQUENCE)
 	private Long id;
+	@NotBlank(message = "O username do usuário é obrigatório")
 	private String username;
+	@NotBlank(message = "A senha do usuário é obrigatória")
 	private String password;
+	@NotBlank(message = "A nome de usuário é obrigatória")
 	private String nome;
 	private Boolean enabled;
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.ATIVO;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Roles roles;
-	
-	
-	
+
 	public Status getStatus() {
 		return status;
 	}

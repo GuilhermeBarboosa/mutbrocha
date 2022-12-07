@@ -16,25 +16,46 @@
 		<main class="mt-5 p-4 pt-5">
 			<h2>Cadastrar</h2>
 			<form th:action="@{/usuario/cadastrar}" method="post" th:object="${user}">
+
+
 				<div class="mb-3">
-					<label for="nome" class="form-label">Nome</label>
-					<input type="text" class="form-control" th:field="*{nome}" placeholder="Digite o nome">
+					<label for="nome" class="form-label mt-4">Nome:</label>
+					<input type="text" id="nome" th:field="*{nome}" autofocus="autofocus" placeholder="Digite o nome" class="form-control"
+						th:errorclass="is-invalid">
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('nome')}"
+						th:each="erro : ${#fields.errors('nome')}" th:text="${erro} + '. '"></span>
 				</div>
+
+
 				<div class="mb-3">
 					<label for="username" class="form-label">Nome de usuário</label>
-					<input type="text" class="form-control" th:field="*{username}" placeholder="Digite o username">
+					<input type="text" class="form-control" th:field="*{username}" placeholder="Digite o username"
+						th:errorclass="is-invalid">
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('username')}"
+						th:each="erro : ${#fields.errors('username')}" th:text="${erro} + '. '"></span>
+
+					<p  class="mt-1" style="color: red; font-size: medium; font-weight: 500;" th:text="${erroMensagem}"></p>
+
 				</div>
+
 				<div class="mb-3">
 					<label for="password" class="form-label">Senha</label>
-					<input type="text" class="form-control" th:field="*{password}" placeholder="Digite o password">
+					<input type="text" class="form-control" th:field="*{password}" placeholder="Digite o password"
+						th:errorclass="is-invalid">
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('password')}"
+						th:each="erro : ${#fields.errors('password')}" th:text="${erro} + '. '"></span>
 				</div>
+
 				<div class="mb-3">
-					<label for="categoria" class="form-label">Tipo de usuário</label>
-					<select name="roles"  class="form-select">
-						<option th:each="roles : ${T(web.mutbrocha.model.Roles).values()}"
-							th:value="${roles}" th:text="${roles.descricao}"></option>
+					<label for="roles" class="form-label">Tipo de usuário</label>
+					<select name="roles" class="form-select">
+						<option th:each="roles : ${T(web.mutbrocha.model.Roles).values()}" th:value="${roles}"
+							th:text="${roles.descricao}"></option>
 					</select>
 				</div>
+
+		
+
 				<button type="submit" class="btn btn-primary">Cadastrar</button>
 			</form>
 		</main>

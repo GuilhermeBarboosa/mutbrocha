@@ -47,6 +47,7 @@ web\mutbrocha\validation\BigDecimalAttributesRelation$List.class
 web\mutbrocha\model\Authorities.class
 web\mutbrocha\repository\CategoriaRepository.class
 web\mutbrocha\model\filter\ReservaProdutoFilter.class
+web\mutbrocha\Application$1.class
 web\mutbrocha\Application.class
 web\mutbrocha\model\filter\CategoriaFilter.class
 web\mutbrocha\validation\validator\DoubleAttributesRelationValidator.class

@@ -3,6 +3,7 @@ package web.mutbrocha.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,13 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import web.mutbrocha.ajax.NotificacaoAlertify;
 import web.mutbrocha.model.Authorities;
 import web.mutbrocha.model.Categorias;
 import web.mutbrocha.model.Produtos;
@@ -59,18 +63,37 @@ public class UserController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public String cadastrar(User user) {
-		
-		user.setEnabled(true);
-		user.setPassword(encoder.encode(user.getPassword()));
-		userService.salvar(user);
-		
-		Authorities authorities = new Authorities();
-		authorities.setUsername(user.getUsername());
-		authorities.setAuthority(user.getRoles().toString());
-		authoritiesRepository.save(authorities);
-		
-		return "redirect:/usuario/cadastro/sucesso";
+	public String cadastrar(@Valid User user, BindingResult resultado, Model model) {
+
+		String erroMensagem = "";
+		if (resultado.hasErrors()) {
+			logger.info("O usuario recebido para cadastrar não é válido.");
+			logger.info("Erros encontrados:");
+			for (FieldError erro : resultado.getFieldErrors()) {
+				logger.info("{}", erro);
+			}
+			return "usuarios/cadastrar";
+		}else{
+
+			if(userRepository.findByusername(user.getUsername()) == null){
+				user.setEnabled(true);
+				user.setPassword(encoder.encode(user.getPassword()));
+				userService.salvar(user);
+
+				Authorities authorities = new Authorities();
+				authorities.setUsername(user.getUsername());
+				authorities.setAuthority(user.getRoles().toString());
+				authoritiesRepository.save(authorities);
+
+				return "redirect:/usuario/cadastro/sucesso";
+			}else{
+				erroMensagem = "Usuario ja cadastrado";
+
+				logger.error(erroMensagem);
+				model.addAttribute("erroMensagem", erroMensagem);
+				return "usuarios/cadastrar";
+			}
+		}
 	}
 	
 	@GetMapping("/cadastro/sucesso")
@@ -78,7 +101,8 @@ public class UserController {
 		model.addAttribute("mensagem", "Cadastro de usuário efetuado com sucesso.");
 		return "mostrarmensagem";
 	}
-	
+
+
 	@GetMapping("/abrirpesquisar")
 	public String abrirPesquisa(Model model) {
 		return "usuarios/pesquisar";
