@@ -29,27 +29,20 @@ public class RelatorioService {
 	private DataSource dataSource;
 	
 	public byte[] gerarRelatorioComplexoTodasReservas() {
-
-		try (Connection conexao = dataSource.getConnection()) {
-				try {
-				
-					Map parameters = new HashMap();  
-				
-					InputStream arquivoJasper = getClass().getResourceAsStream("/relatorios/relatoriosimplestodasreservas.jasper");
-
-					JasperReport subReport = JasperCompileManager.compileReport(RelatorioService.class.getResourceAsStream("/relatorios/dadosusuario.jrxml"));
-					parameters.put("subReport", subReport);
-					
-					InputStream arquivoDados = getClass().getResourceAsStream("/relatorios/dadosusuario.jasper");
-					JasperPrint jasperPrint = JasperFillManager.fillReport(arquivoJasper, null, conexao);
-					return JasperExportManager.exportReportToPdf(jasperPrint);
-				} catch (JRException e) {
-					logger.error("Problemas na geracao do PDF do relatório: " + e);
-				}
-			} catch (SQLException e) {
-				logger.error("Problemas na obtenção de uma conexão com o BD na geração de relatório: " + e);
+		InputStream arquivoJasper = getClass().getResourceAsStream("/relatorios/relatoriovendedores.jasper");
+		try (Connection conexao = dataSource.getConnection()){
+			try {
+				JasperPrint jasperPrint = JasperFillManager.fillReport(arquivoJasper, null, conexao);
+				return JasperExportManager.exportReportToPdf(jasperPrint);
+			} catch (JRException e) {
+				logger.error("Problemas na geracao do PDF do relatório: " + e);
 			}
-			return null;
+		} catch (SQLException e) {
+			logger.error("Problemas na obtenção de uma conexão com o BD na geração de relatório: " + e);
+		}
+
+		return null;
+
 	}
 
 

@@ -26,6 +26,7 @@ import web.mutbrocha.model.Categorias;
 import web.mutbrocha.model.Produtos;
 import web.mutbrocha.model.Situacoes;
 import web.mutbrocha.model.Status;
+import web.mutbrocha.model.User;
 import web.mutbrocha.model.filter.CategoriaFilter;
 import web.mutbrocha.model.filter.ProdutoFilter;
 import web.mutbrocha.repository.pagination.PaginacaoUtil;
@@ -61,6 +62,9 @@ public class ProdutoQueriesImpl implements ProdutoQueries {
 		}
 		if (filtro.getCategoria() != null) {
 			predicateList.add(builder.equal(p.<Categorias>get("categoria").<Long>get("id"), filtro.getCategoria()));
+		}
+		if (filtro.getUser() != null) {
+			predicateList.add(builder.equal(p.<User>get("user").<Long>get("id"), filtro.getUser()));
 		}
 
 		predicateList.add(builder.equal(p.<Status>get("status"), Status.ATIVO));

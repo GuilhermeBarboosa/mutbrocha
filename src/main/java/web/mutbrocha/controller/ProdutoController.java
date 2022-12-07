@@ -1,5 +1,6 @@
 package web.mutbrocha.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import web.mutbrocha.model.Categorias;
 import web.mutbrocha.model.Produtos;
+import web.mutbrocha.model.Roles;
 import web.mutbrocha.model.Status;
+import web.mutbrocha.model.User;
 import web.mutbrocha.model.filter.ProdutoFilter;
 import web.mutbrocha.pagination.PageWrapper;
 import web.mutbrocha.repository.CategoriaRepository;
 import web.mutbrocha.repository.ProdutoRepository;
+import web.mutbrocha.repository.UserRepository;
 import web.mutbrocha.service.ProdutoService;
 
 @Controller
@@ -35,6 +39,9 @@ public class ProdutoController {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -50,7 +57,11 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public String cadastrar(Produtos produtos) {
+	public String cadastrar(Principal principal, Produtos produtos) {
+		
+		User user = userRepository.findByusername(principal.getName());
+		produtos.setUser(user);
+		
 		produtoService.salvar(produtos);
 		return "redirect:/produtos/cadastro/sucesso";
 	}
@@ -65,11 +76,14 @@ public class ProdutoController {
 	public String abrirPesquisa(Model model) {
 		List<Categorias> categorias = categoriaRepository.findByStatus(Status.ATIVO);
 		model.addAttribute("categorias", categorias);
+		
+		List<User> users = userRepository.findByStatusAndRole(Status.ATIVO, Roles.ROLE_ADM);
+		model.addAttribute("users", users);
 		return "produtos/pesquisar";
 	}
 	
 	@GetMapping("/pesquisar")
-	public String pesquisar(Categorias categoria, ProdutoFilter filtro, Model model, 
+	public String pesquisar(Categorias categoria, User usuario, ProdutoFilter filtro, Model model, 
 			@PageableDefault(size = 10) 
     		@SortDefault(sort = "id", direction = Sort.Direction.ASC)
     		Pageable pageable, HttpServletRequest request) {
@@ -90,7 +104,10 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/alterar")
-	public String alterar(Produtos produtos) {
+	public String alterar(Principal principal, Produtos produtos) {
+		User user = userRepository.findByusername(principal.getName());
+		produtos.setUser(user);
+		
 		produtoService.alterar(produtos);
 		return "redirect:/produtos/alterar/sucesso";
 	}

@@ -41,6 +41,10 @@ public class Produtos implements Serializable {
 	@JoinColumn(name = "categoria")
 	private Categorias categoria;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_usuario")
+	private User user;
+	
 	@Enumerated(EnumType.STRING)
 	private Situacoes situacao = Situacoes.DISPONIVEL;
 	
@@ -95,9 +99,17 @@ public class Produtos implements Serializable {
 		this.situacao = situacao;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(categoria, id, img, produto, situacao, status);
+		return Objects.hash(categoria, id, img, produto, situacao, status, user);
 	}
 
 	@Override
@@ -111,14 +123,16 @@ public class Produtos implements Serializable {
 		Produtos other = (Produtos) obj;
 		return Objects.equals(categoria, other.categoria) && Objects.equals(id, other.id)
 				&& Objects.equals(img, other.img) && Objects.equals(produto, other.produto)
-				&& situacao == other.situacao && status == other.status;
+				&& situacao == other.situacao && status == other.status && Objects.equals(user, other.user);
 	}
 
 	@Override
 	public String toString() {
-		return "Produtos [id=" + id + ", produto=" + produto + ", img=" + img + ", categoria=" + categoria
-				+ ", situacao=" + situacao + ", status=" + status + "]";
+		return "Produtos [id=" + id + ", produto=" + produto + ", img=" + img + ", categoria=" + categoria + ", user="
+				+ user + ", situacao=" + situacao + ", status=" + status + "]";
 	}
+
+	
 
 	
 }
