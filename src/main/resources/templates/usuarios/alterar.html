@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.thymeleaf.org">
+<html lang="pt-BR" layout:decorate="~{layout/layoutpadrao}" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Alterar Categoria</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Alterar Categoria</title>
 </head>
+
 <body>
 	<div layout:fragment="conteudo">
 		<div th:replace="~{layout/fragments/sidebar :: sidebar}"></div>
@@ -13,6 +16,11 @@
 		<main class="mt-5 p-4 pt-5">
 			<h2>Alterar</h2>
 			<form th:action="@{/usuario/alterar}" method="post" th:object="${user}">
+
+				<label style="visibility: hidden;" class="form-label">
+					<span name="usernameAntigo" th:text="${user.username}"></span>
+				</label>
+
 				<div class="mb-3">
 					<label for="id" class="form-label">Código: <span th:text="*{id}"></span></label>
 				</div>
@@ -27,13 +35,13 @@
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">Password</label>
-					<input type="text" class="form-control" th:field="*{password}" required>
+					<input type="text" class="form-control" name="password" id="password" value="" required>
 				</div>
 				<div class="mb-3">
 					<label for="categoria" class="form-label">Tipo de usuário</label>
-					<select name="roles"  class="form-select">
-						<option th:each="roles : ${T(web.mutbrocha.model.Roles).values()}"
-							th:value="${roles}" th:text="${roles.descricao}"></option>
+					<select name="roles" class="form-select">
+						<option th:each="roles : ${T(web.mutbrocha.model.Roles).values()}" th:value="${roles}"
+							th:text="${roles.descricao}"></option>
 					</select>
 				</div>
 				<button type="submit" class="btn btn-primary">Alterar</button>
@@ -41,4 +49,5 @@
 		</main>
 	</div>
 </body>
+
 </html>

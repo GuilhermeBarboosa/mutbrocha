@@ -7,4 +7,5 @@ import web.mutbrocha.model.User;
 
 public interface AuthoritiesRepository  extends JpaRepository<Authorities, String> {
 
+    Authorities findByusername(String username);
 }

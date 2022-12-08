@@ -24,4 +24,9 @@ public class UserService {
 	public void alterar(User user) {
 		userRepository.save(user);
 	}
+
+	@Transactional
+	public User alterarComRetorno(User user) {
+		return userRepository.save(user);
+	}
 }

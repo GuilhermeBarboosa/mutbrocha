@@ -127,19 +127,23 @@ public class UserController {
 	
 	@PostMapping("/alterar")
 	public String alterar(User user) {
-		
+
+		User userEscolhido = userRepository.findById(user.getId()).get();
+		Authorities authorities = authoritiesRepository.findById(userEscolhido.getUsername()).get();
+		authoritiesRepository.deleteById(authorities.getUsername());
+
 		user.setEnabled(true);
 		user.setPassword(encoder.encode(user.getPassword()));
 		userService.alterar(user);
-		
-		Authorities authorities = new Authorities();
-		authorities.setUsername(user.getUsername());
-		authorities.setAuthority(user.getRoles().toString());
-		authoritiesRepository.save(authorities);
-		
+
+		Authorities authoritiesNova = new Authorities();
+		authoritiesNova.setUsername(user.getUsername());
+		authoritiesNova.setAuthority(user.getRoles().toString());
+		authoritiesRepository.save(authoritiesNova);
+
 		return "redirect:/usuario/alterar/sucesso";
 	}
-	
+
 	@GetMapping("/alterar/sucesso")
 	public String mostrarMensagemAlterarSucesso(Model model) {
 		model.addAttribute("mensagem", "Alteração na usuários efetuada com sucesso.");
