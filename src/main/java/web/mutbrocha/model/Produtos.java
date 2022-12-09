@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -32,9 +33,9 @@ public class Produtos implements Serializable {
 	@SequenceGenerator(name="gerador1", sequenceName="produtos_id_seq", allocationSize=1)
 	@GeneratedValue(generator="gerador1", strategy=GenerationType.SEQUENCE)
 	private Long id;
-	
+	@NotBlank(message = "O produto não pode ser nulo")
 	private String produto;
-	
+	@NotBlank(message = "A imagem não pode ser nula")
 	private String img;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

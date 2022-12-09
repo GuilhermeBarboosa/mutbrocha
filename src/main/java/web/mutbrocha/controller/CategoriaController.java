@@ -1,6 +1,7 @@
 package web.mutbrocha.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,16 +13,21 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import web.mutbrocha.model.Categorias;
 import web.mutbrocha.model.Status;
+import web.mutbrocha.model.User;
 import web.mutbrocha.model.filter.CategoriaFilter;
 import web.mutbrocha.pagination.PageWrapper;
 import web.mutbrocha.repository.CategoriaRepository;
 import web.mutbrocha.service.CategoriaService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/categorias")
@@ -41,11 +47,24 @@ public class CategoriaController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public String cadastrar(Categorias categoria) {
-		logger.error("teste");
+	public String cadastrar(@Valid Categorias categoria, BindingResult resultado, Model model) {
+
+
+		if (resultado.hasErrors()) {
+			logger.info("A categoria recebida para cadastrar não é válido.");
+			logger.info("Erros encontrados:");
+			for (FieldError erro : resultado.getFieldErrors()) {
+				logger.info("{}", erro);
+			}
+
+			return "categorias/cadastrar";
+		} else {
+			categoriaService.salvar(categoria);
+			return "redirect:/categorias/cadastro/sucesso";
+		}
+
 		 
-		categoriaService.salvar(categoria);
-		return "redirect:/categorias/cadastro/sucesso";
+
 	}
 	
 	@GetMapping("/cadastro/sucesso")

@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -30,7 +31,7 @@ public class Categorias implements Serializable {
 	@SequenceGenerator(name="gerador", sequenceName="categorias_id_seq", allocationSize=1)
 	@GeneratedValue(generator="gerador", strategy=GenerationType.SEQUENCE)
 	private Long id;
-	
+	@NotBlank(message = "A categoria não pode ser nula")
 	private String categoria;
 	
 	@Enumerated(EnumType.STRING)

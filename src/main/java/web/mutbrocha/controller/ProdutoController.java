@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,13 +60,26 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public String cadastrar(Principal principal, Produtos produtos) {
-		
-		User user = userRepository.findByusername(principal.getName());
-		produtos.setUser(user);
-		
-		produtoService.salvar(produtos);
-		return "redirect:/produtos/cadastro/sucesso";
+	public String cadastrar(Principal principal, @Valid Produtos produtos, BindingResult resultado, Model model) {
+
+		if (resultado.hasErrors()) {
+			logger.info("O produto recebido para cadastrar não é válido.");
+			logger.info("Erros encontrados:");
+			for (FieldError erro : resultado.getFieldErrors()) {
+				logger.info("{}", erro);
+			}
+
+			List<Categorias> categorias = categoriaRepository.findByStatus(Status.ATIVO);
+			model.addAttribute("categorias", categorias);
+			return "produtos/cadastrar";
+		} else {
+
+			User user = userRepository.findByusername(principal.getName());
+			produtos.setUser(user);
+
+			produtoService.salvar(produtos);
+			return "redirect:/produtos/cadastro/sucesso";
+		}
 	}
 	
 	@GetMapping("/cadastro/sucesso")
