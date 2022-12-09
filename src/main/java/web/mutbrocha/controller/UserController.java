@@ -87,7 +87,7 @@ public class UserController {
 
 				return "redirect:/usuario/cadastro/sucesso";
 			}else{
-				erroMensagem = "Usuario ja cadastrado";
+				erroMensagem = "Usuário já cadastrado";
 
 				logger.error(erroMensagem);
 				model.addAttribute("erroMensagem", erroMensagem);

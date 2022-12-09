@@ -3,20 +3,25 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" type="text/css" href="../../static/css/vendors/bootstrap5/bootstrap.min.css" th:href="@{/css/vendors/bootstrap5/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" href="../../static/css/vendors/bootstrap5/bootstrap.min.css"
+		th:href="@{/css/vendors/bootstrap5/bootstrap.min.css}" />
 	<!-- Bootstrap Icons -->
-	<link rel="stylesheet" type="text/css" href="../../static/css/vendors/bootstrap5/bootstrap-icons.css" th:href="@{/css/vendors/bootstrap5/bootstrap-icons.css}"/>
+	<link rel="stylesheet" type="text/css" href="../../static/css/vendors/bootstrap5/bootstrap-icons.css"
+		th:href="@{/css/vendors/bootstrap5/bootstrap-icons.css}" />
 	<!-- Estilo Principal do Template -->
 	<link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/style.css}">
 	<!-- AlertifyJS CSS -->
-	<link rel='stylesheet' type="text/css" href="../../static/css/vendors/alertifyjs/alertify.min.css" th:href="@{/css/vendors/alertifyjs/alertify.min.css}">
-	<link rel='stylesheet' type="text/css" href="../../static/css/vendors/alertifyjs/bootstrap.min.css" th:href="@{/css/vendors/alertifyjs/bootstrap.min.css}">
+	<link rel='stylesheet' type="text/css" href="../../static/css/vendors/alertifyjs/alertify.min.css"
+		th:href="@{/css/vendors/alertifyjs/alertify.min.css}">
+	<link rel='stylesheet' type="text/css" href="../../static/css/vendors/alertifyjs/bootstrap.min.css"
+		th:href="@{/css/vendors/alertifyjs/bootstrap.min.css}">
 	<!-- flatpickr -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css" integrity="sha256-RXPAyxHVyMLxb0TYCM2OW5R4GWkcDe02jdYgyZp41OU=" crossorigin="anonymous">
-	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.css"
+		integrity="sha256-RXPAyxHVyMLxb0TYCM2OW5R4GWkcDe02jdYgyZp41OU=" crossorigin="anonymous">
+
 	<title>Página Principal</title>
 </head>
 
@@ -25,7 +30,7 @@
 		/* 'Open Sans' font from Google Fonts */
 		@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
-		.register{
+		.register {
 			box-sizing: border-box;
 			display: block;
 			width: 100%;
@@ -37,7 +42,7 @@
 			font-size: 0.95em;
 			text-decoration: none;
 		}
-		
+
 		body {
 			background: #456;
 			font-family: 'Open Sans', sans-serif;
@@ -126,54 +131,69 @@
 			width: 40%;
 			margin: auto;
 		}
-
-	
 	</style>
 
 	<div layout:fragment="conteudo">
 
-	
-			<div class="login position-absolute top-50 start-50 translate-middle">
-				<!-- <div class="login-triangle"></div> -->
-				<form th:action="@{/registerconta}" method="post" class="login-container" th:object="${user}">
 
-					<div class="mb-3">
-						<label for="nome" class="fw-bold" >Nome</label>
-						<input type="text" th:field="*{nome}" >
-					</div>
+		<div class="login position-absolute top-50 start-50 translate-middle">
+			<!-- <div class="login-triangle"></div> -->
+			<form th:action="@{/registerconta}" method="post" class="login-container" th:object="${user}">
 
-					<div class="mb-3">
-					<label for="username" class="fw-bold"  >Username</label>
-					<input type="text" th:field="*{username}">
-					</div>
 
-					<div class="mb-3">
+				<div class="mb-3">
+					<label for="nome" class="fw-bold">Nome</label>
+					<input type="text" th:field="*{nome}" th:errorclass="is-invalid">
+
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('nome')}"
+						th:each="erro : ${#fields.errors('nome')}" th:text="${erro} + '. '"></span>
+				</div>
+
+				<div class="mb-3">
+					<label for="username" class="fw-bold">Username</label>
+					<input type="text" th:field="*{username}" th:errorclass="is-invalid">
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('username')}"
+						th:each="erro : ${#fields.errors('username')}" th:text="${erro} + '. '"></span>
+
+					<p class="mt-1" style="color: red; font-size: medium; font-weight: 500;" th:text="${erroMensagem}">
+					</p>
+				</div>
+
+				<div class="mb-3">
 					<label for="password" class="fw-bold">Password</label>
-					<input type="password" th:field="*{password}">
-					</div>
+					<input type="password" th:field="*{password}" th:errorclass="is-invalid">
 
-					<p><input type="submit" value="registrar"></p>
-				</form>
-			</div>
+					<span class="invalid-feedback" th:if="${#fields.hasErrors('password')}"
+						th:each="erro : ${#fields.errors('password')}" th:text="${erro} + '. '"></span>
+				</div>
+
+				<p><input type="submit" value="registrar"></p>
+			</form>
+		</div>
 
 	</div>
 
 
-	
+
 	<!-- Bootstrap JS -->
-	<script src="../../static/js/vendors/bootstrap5/bootstrap.bundle.min.js" th:src="@{/js/vendors/bootstrap5/bootstrap.bundle.min.js}"></script>
-    <!-- AlertifyJS JS -->
-	<script src="../../static/js/vendors/alertifyjs/alertify.min.js" th:src="@{/js/vendors/alertifyjs/alertify.min.js}"></script>
-    <!-- CodigoNinja JS -->
+	<script src="../../static/js/vendors/bootstrap5/bootstrap.bundle.min.js"
+		th:src="@{/js/vendors/bootstrap5/bootstrap.bundle.min.js}"></script>
+	<!-- AlertifyJS JS -->
+	<script src="../../static/js/vendors/alertifyjs/alertify.min.js"
+		th:src="@{/js/vendors/alertifyjs/alertify.min.js}"></script>
+	<!-- CodigoNinja JS -->
 	<script src="../../static/js/codigoninjadogodoi.js" th:src="@{/js/codigoninjadogodoi.js}"></script>
-    <!-- flatpickr -->
-	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js" integrity="sha256-AkQap91tDcS4YyQaZY2VV34UhSCxu2bDEIgXXXuf5Hg=" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/pt.js" integrity="sha256-dToT8NhAhejnL0aGbHv9BP6u+1u7vgv2QPUpkuDUhws=" crossorigin="anonymous"></script>
-    
-    <!-- <script src="../../static/js/vendors/jquery/jquery-3.6.0.min.js" th:src="@{/js/vendors/jquery/jquery-3.6.0.min.js}" ></script> -->
+	<!-- flatpickr -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/flatpickr.min.js"
+		integrity="sha256-AkQap91tDcS4YyQaZY2VV34UhSCxu2bDEIgXXXuf5Hg=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.9/dist/l10n/pt.js"
+		integrity="sha256-dToT8NhAhejnL0aGbHv9BP6u+1u7vgv2QPUpkuDUhws=" crossorigin="anonymous"></script>
+
+	<!-- <script src="../../static/js/vendors/jquery/jquery-3.6.0.min.js" th:src="@{/js/vendors/jquery/jquery-3.6.0.min.js}" ></script> -->
 
 	<!-- Bloco para JavaScript adicional que a página pode precisar -->
 	<th:block layout:fragment="scripts"></th:block>
 
 </body>
+
 </html>
